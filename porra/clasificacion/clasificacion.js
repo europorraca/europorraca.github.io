@@ -19,7 +19,7 @@ $routeProvider.when('/clasificacion', {
 	}
 	if(user != null ){
 	
-	$scope.usuario = nombre;
+	
 	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));			
 	
 			
