@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LaPorraca">
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+ 
+    <title>AngularJS & Firebase Web App</title>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+ 
+    <link href="justified-nav.css" rel="stylesheet">
+ 
+</head>
+ 
+<body ng-controller="ClasificacionCtrl">
+ 
+    <div class="container">
+        <div class="jumbotron" style="padding-bottom:0px;">
+            <h2>CLASIFICACION</h2>
+        </div>
+       
+	  <table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Puntos</th>
+						
+					</tr>
+				</thead>
+				<tbody id="teamListTable">
+					<tr ng-repeat="usuario in clasificacion">
+						<td>{{usuario.Nombre}}</td>
+						<td>{{usuario.Puntos}}</td>
+					</tr>
+				</tbody>
+			</table>
+ 
+    </div>
+ 
+  
+</body>
+</html>

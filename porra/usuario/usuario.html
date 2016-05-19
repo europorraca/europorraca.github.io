@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LaPorraca">
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+ 
+    <title>AngularJS & Firebase Web App</title>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+ 
+    <link href="justified-nav.css" rel="stylesheet">
+ 
+</head>
+ 
+<body ng-controller="UsuarioCtrl">
+ 
+    <div class="container">
+        <div class="jumbotron" style="padding-bottom:0px;">
+            <h2>Profile</h2>
+        </div>
+        <form class="form-signin" role="form">
+            <input ng-model="profile.Nombre" ng-change="profile.$save()" type="Nombre" class="form-control" placeholder="Nombre" required="" autofocus="">
+            <input ng-model="profile.Frase" ng-change="profile.$save()" type="Frase" class="form-control" placeholder="Frase" required="">
+			
+      </form>
+ 
+    </div>
+ 
+  
+</body>
+</html>
