@@ -14,7 +14,7 @@
  
     <!-- Custom CSS -->
     <link href="home/css/freelancer.css" rel="stylesheet">
-
+  
     <!-- Custom Fonts -->
     <link href="home/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -59,7 +59,7 @@
 		<div class="row control-group">
 		 <div class="form-group col-xs-12 floating-label-form-group controls">
 		<label>Email</label>
-        <input ng-model="user.email" name="input"  type="email" required required data-validation-required-message="Por favor pon el mail" class="form-control" placeholder="Direccion de email"  autofocus="">
+        <input ng-model="user.email" name="input" id="email" type="email" required required data-validation-required-message="Por favor pon el mail" class="form-control" placeholder="Direccion de email"  autofocus="">
 		<p class="help-block text-danger">
 		<span class="error" ng-show="sentMessage.input.$error.email">
         El email no es válido!</span>
@@ -80,7 +80,8 @@
 <div class="row">
                             <div class="form-group col-xs-12">
                                 <button type="submit" ng-click="SignIn($event)" class="btn btn-success btn-lg">Entra</button>
-								 <button title="Se enviará un mail al seleccionador y te convocará si lo cree conveniente" type="submit" ng-click="SignIn($event)" class="btn btn-success btn-lg">Pedir convocatoria</button>
+								 <button type="submit" class="btn btn-success btn-lg" ng-click="Mail($event)">Send</button>
+								 <button title="Se enviará un mail al seleccionador y te convocará si lo cree conveniente" type="submit" class="btn btn-success btn-lg">Pedir convocatoria</button>
                             </div>
                         </div>
       </form>
@@ -104,7 +105,7 @@
 
     <!-- Contact Form JavaScript -->
     <script src="home/js/jqBootstrapValidation.js"></script>
-    <script src="home/js/contact_me.js"></script>
+    
  <!-- Custom Theme JavaScript -->
     <script src="home/js/freelancer.js"></script>
  

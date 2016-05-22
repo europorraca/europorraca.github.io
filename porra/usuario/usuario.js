@@ -24,39 +24,7 @@ $routeProvider.when('/usuario', {
 	}
 	
     
-	var token = localStorage.getItem("token");
-    firebase.auth().signInWithCustomToken(token).catch(function(error) {
-	  // Handle Errors here.
-	  var errorCode = error.code;
-	  var errorMessage = error.message;
- 
-	});
 
-	
-	var storageRef = firebase.storage().ref();
-	
-	storageRef.child(user + '/avatar').getDownloadURL().then(function(url) {
-     document.getElementById("avatar").src = url;
-}).catch(function(error) {
-  switch (error.code) {
-    case 'storage/object_not_found':
-      alert("no existe");
-      break;
-
-    case 'storage/unauthorized':
-     alert("no hay permisos");
-      break;
-
-    case 'storage/canceled':
-      alert("cancelado");
-      break;
-  
-
-    case 'storage/unknown':
-      // Unknown error occurred, inspect the server response
-      break;
-  }
-  });
 	
 	
 	 
