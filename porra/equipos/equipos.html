@@ -8,36 +8,71 @@
     <title>AngularJS & Firebase Web App</title>
  
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    
  
     <link href="justified-nav.css" rel="stylesheet">
- 
+  <link href="../bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
 </head>
  
 <body ng-controller="EquiposCtrl">
+ <header class="intro-header" style="background-image: url('bootstrap/img/logo3.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Equipos</h1>
+                        <hr class="small">
+                        <span class="subheading">La puntuación de los equipos en la Eurocopa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
  
     <div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>Equipos</h2>
-        </div>
+	<div id="page-wrapper">
        
-	  <table>
+			<div class="row">
+        <div class="table-responsive">
+		
+	  <table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Name</th>
-						<th>Puntos</th>
+						<th>Partido 1</th>
+						<th>Partido 2</th>
+						<th>Partido 3</th>
+						<th>Octavos</th>
+						<th>Cuartos</th>
+						<th>Semifinales</th>
+						<th>Final</th>
+						<th>Total</th>
 						
 					</tr>
 				</thead>
 				<tbody id="teamListTable">
 					<tr ng-repeat="equipo in equipos">
 						<td>{{equipo.Nombre}}</td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido1"  id="disabledInput" type="number" ></td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido2"  id="disabledInput" type="number"  ></td></td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido3"  id="disabledInput" type="number" ></td></td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido4"  id="disabledInput" type="number" ></td></td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido5"  id="disabledInput" type="number" ></td></td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido6"  id="disabledInput" type="number" ></td></td>
+						<td><input class="form-control" ng-disabled="noesSuperusuario" ng-model="equipo.Partido7"  id="disabledInput" type="number" ></td></td>
 						<td>{{equipo.Puntos}}</td>
 					</tr>
 				</tbody>
 			</table>
- 
+ </div>
+ </div>
+ <button type="button" ng-click="Guardar($event)" ng-disabled="noesSuperusuario" class="btn  btn-primary ">Guardar</button>
     </div>
+	</div>
  
   
 </body>

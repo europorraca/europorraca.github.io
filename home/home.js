@@ -15,6 +15,10 @@ $routeProvider.when('/home', {
 	var firebaseObj = new Firebase("https://blinding-fire-4682.firebaseio.com/");
 	var loginObj = $firebaseSimpleLogin(firebaseObj);
  
+ var user = localStorage.getItem("User");
+ if(user !=null ){
+	 localStorage.setItem("User",null);
+ }
  $scope.SignIn = function(event) {
     event.preventDefault();  // To prevent form refresh
 	if($scope.user == null){
@@ -30,6 +34,8 @@ $routeProvider.when('/home', {
         .then(function(user) {
             // Success callback
 			localStorage.setItem("User", username);
+			localStorage.setItem("token", user.firebaseAuthToken);
+			
             $window.location.href = 'porra/porra.html';
         }, function(error) {
             // Failure callback

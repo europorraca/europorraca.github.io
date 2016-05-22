@@ -8,39 +8,67 @@
     <title>AngularJS & Firebase Web App</title>
  
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    
  
     <link href="justified-nav.css" rel="stylesheet">
- 
+    <link href="../bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
 </head>
  
-<body ng-controller="ParticipantesCtrl">
+<body ng-controller="ParticipantesCtrl" onload="CargarFoto()">
  
-    <div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>PARTICIPANTES</h2>
+<div class="container">
+<header class="intro-header" style="background-image: url('bootstrap/img/logo3.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Participantes</h1>
+                        <hr class="small">
+                        <span class="subheading">Los jugadores de La Porraca</span>
+                    </div>
+                </div>
+            </div>
         </div>
-       
-	  <table>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Frase</th>
-						<th>Puntos</th>
-						
-					</tr>
-				</thead>
-				<tbody id="teamListTable">
-					<tr ng-repeat="usuario in clasificacion">
-						<td>{{usuario.Nombre}}</td>
-						<td>{{usuario.Frase}}</td>
-						<td>{{usuario.Puntos}}</td>
-					</tr>
-				</tbody>
-			</table>
- 
+    </header>
+	 <div id="page-wrapper">
+        
+        <div class="row">
+                <div class="col-lg-4" ng-repeat="usuario in participantes" >
+	   <div class="panel panel-info" >
+                        <div class="panel-heading">
+                            {{usuario.Nombre}}
+                        </div>
+                        <div class="panel-body">
+						 <div class="row">
+						  <div class="col-xs-3">
+						  <img  ng-src="{{usuario.Avatar}}" alt="Avatar" id="avatar" height="60" width="60">
+						  </div>
+						 
+                           <div class="col-xs-9 text-left">
+							<p>Equipos: </p>
+							<p>       {{usuario.Equipo1}}</p>
+							<p>       {{usuario.Equipo2}}</p>
+							</div>
+							</div>
+                        </div>
+                        <div class="panel-footer">
+                            {{usuario.Frase}}
+                        </div>
+                    </div>
+					</div>
+					</div>
+	  <div class="table-responsive">
+	   
+	
+       </div>
     </div>
- 
+ </div>
+  <script>
   
+  </script>
 </body>
 </html>

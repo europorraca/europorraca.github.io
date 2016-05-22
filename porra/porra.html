@@ -9,11 +9,20 @@
   <title>Europorraca</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="../html5-boilerplate-master/dist/css/normalize.css">
   <link rel="stylesheet" href="../html5-boilerplate-master/dist/css/main.css">
   <link rel="stylesheet" href="../app.css">
-  
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <!-- Custom CSS -->
+    <link href="bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
 <script>
   // Initialize Firebase
   var config = {
@@ -31,23 +40,90 @@
   
 
 </head>
-<body>
+<body onload="cargarUsuario()">
   
-<ul class="menu">
-    <li><a href="#/clasificacion">Clasificacion</a></li>
-    <li><a href="#/participantes">Participantes</a></li>
+  <!--
+   <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+   <div class="navbar-header">
+   
+<ul class="nav nav-tabs">
+    <li> <a href="#/clasificacion" >Clasificacion</a></li>
+    <li><a href="#/participantes" >Participantes</a></li>
 	<li><a href="#/equipos">Equipos</a></li>
     <li><a href="#/usuario">Editar Usuario</a></li>
 	<li><a href="#/usuario">Reglas</a></li>
+	<li><a href="http://localhost/europorraca/app/index.html">Logout</a></li>
 	
-           
-  </label>
   </ul>
+  </div>
+   <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+   <ul class="dropdown-menu dropdown-alerts">
+   <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> 
+                                    <span class="pull-right text-muted small">4 minutes ago <div id="Aviso"></div></span>
+                                </div>
+                            </a>
+                        </li>
+   </ul>
+   </li>
+   </ul>
+  </nav>
+  -->
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" >La porraca</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <a href="#/clasificacion" >Clasificacion</a></li>
+    <li><a href="#/participantes" >Participantes</a></li>
+	<li><a href="#/equipos">Equipos</a></li>
+    <li><a href="#/usuario">Editar Usuario</a></li>
+	<li><a href="#/reglas">Reglas y Calendario</a></li>
+	<li><a href="http://localhost/europorraca/app/index.html">Logout</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	<!--
+   <header class="intro-header" style="background-image: url('bootstrap/img/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+	-->
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-
+ <div class="container">
   <div ng-view></div>
+  </div>
 
   
 
@@ -56,6 +132,7 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   -->
   
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="../scripts/angular/angular.js"></script>
   <script src="http://code.angularjs.org/1.2.20/angular-route.js"></script>
   <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
@@ -63,13 +140,20 @@
   <script src="https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js"></script>
   <!-- AngularFire -->
   <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+  <!-- Programa -->
   <script src="porra.js"></script>
   <script src="usuario/usuario.js"></script>
   <script src="clasificacion/clasificacion.js"></script>
   <script src="participantes/participantes.js"></script>
   <script src="equipos/equipos.js"></script>
+  <script src="reglas/reglas.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+   <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+   <!-- Custom Theme JavaScript -->
+    <script src="bootstrap/js/clean-blog.min.js"></script>
+	
 </body>
 </html>

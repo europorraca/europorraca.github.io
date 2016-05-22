@@ -19,17 +19,39 @@ $routeProvider.when('/participantes', {
 	}
 	if(user != null ){
 	
-	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));			
+		$scope.participantes = $firebaseObject(firebaseObj.child('Europorraquers'));
+		//Nos loginamos en firebase
+		var token = localStorage.getItem("token");
+		firebase.auth().signInWithCustomToken(token).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+ 
+	});
+	}//if(user != null )
 	
+angular.forEach($scope.participantes, function (value,index) {
+           alert(value);
+})
+	var aEquipos = {};
+	
+	$scope.participantes.forEach(function(value,key) {
+		    aEquipos[key] = $scope.participantes[key];           
+			//Guardamos la puntuacion del equipo
 			
+        });	
 	 
 	
-	}else{
-		alert("Usario incorrecto por favor vuelve a loginarte");
-	}
 	
-	 
 	
+	$scope.CargarFoto = function() {
+		$scope.participantes.forEach(function(value,key) {
+		    aEquipos[key] = $scope.participantes[key];           
+			//Guardamos la puntuacion del equipo
+			alert('Cargamos foto');
+        });	
+	}		
+	//CargarFoto();
 	 
  $scope.Guardar = function(event) {
     event.preventDefault();  // To prevent form refresh

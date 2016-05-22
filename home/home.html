@@ -6,34 +6,107 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
  
-    <title>AngularJS & Firebase Web App</title>
+    <title>La Porraca</title>
  
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="home/css/bootstrap.min.css" rel="stylesheet">
+
  
-    <link href="justified-nav.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="home/css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="home/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<!-- 
+<link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
  
+  <link href="justified-nav.css" rel="stylesheet">
+  -->
+</style>
+
 </head>
  
-<body ng-controller="HomeCtrl">
- 
-    <div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>AngularJS & Firebase App!</h2>
+<body ng-controller="HomeCtrl" id="page-top" class="index">
+ <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="home/img/logo2.png" width="100" height = "100" alt="">
+                    <div class="intro-text">
+                        <span class="name">LA PORRACA</span>
+                        <hr class="star-light">
+                        <span class="skills">Vive la Eurocopa de otra manera</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form class="form-signin" role="form">
-            <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-            <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
-            <label class="checkbox">
-                <a href="#"> Sign Up</>
-        </label>
-        <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
-
+    </header>
+	 <section id="contact">
+    <div class="container">
+	  <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Salta al campo</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+        		
+	   <div class="row">
+	   <div class="col-lg-8 col-lg-offset-2">
+	   <form name="sentMessage" id="contactForm" novalidate>
+      
+		<div class="row control-group">
+		 <div class="form-group col-xs-12 floating-label-form-group controls">
+		<label>Email</label>
+        <input ng-model="user.email" name="input"  type="email" required required data-validation-required-message="Por favor pon el mail" class="form-control" placeholder="Direccion de email"  autofocus="">
+		<p class="help-block text-danger">
+		<span class="error" ng-show="sentMessage.input.$error.email">
+        El email no es válido!</span>
+		</p>
+		</div>
+		</div>
+		<div class="row control-group">
+		 <div class="form-group col-xs-12 floating-label-form-group controls">
+		<label>Password</label>
+        <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+		<p class="help-block text-danger"></p>
+		</div>
+		</div>
+            
+            
+           
+      <div id="success"></div>  
+<div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" ng-click="SignIn($event)" class="btn btn-success btn-lg">Entra</button>
+								 <button title="Se enviará un mail al seleccionador y te convocará si lo cree conveniente" type="submit" ng-click="SignIn($event)" class="btn btn-success btn-lg">Pedir convocatoria</button>
+                            </div>
+                        </div>
       </form>
- 
+	  </div>
+	
+  </div>
     </div>
  
-   
+   </section>
+ 
+  <!-- jQuery -->
+    <script src="home/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="home/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="home/js/classie.js"></script>
+    <script src="home/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="home/js/jqBootstrapValidation.js"></script>
+    <script src="home/js/contact_me.js"></script>
+ <!-- Custom Theme JavaScript -->
+    <script src="home/js/freelancer.js"></script>
  
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="porracaApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Europorraca</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+	
+		<div ng-controller="LoginCtrl">
+			<label>Email:<input type="email" ng-model="email"></label>
+			<label>Password:<input type="password" ng-model="password"></label>
+			<button ng-click="login()">Login</button>
+			<button ng-click="register()">Register</button>
+			<p class="error">{{error.code}}</p>
+		</div>
+		
+        
+		
+		<!-- Angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<!-- Firebase -->
+		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+		<!-- AngularFire -->
+		<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+		
+		<!-- app -->
+		<script src="main.js"></script>
+    </body>
+</html>

@@ -19,9 +19,12 @@ $routeProvider.when('/clasificacion', {
 	}
 	if(user != null ){
 	
-	
 	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));			
-	
+	//firebase.database().ref('Europorraquers').orderByChild('Puntos').once('value').then(function(snapshot) {
+     //$scope.clasificacion = snapshot.val();
+  
+     //});
+			
 			
 	 
 	
