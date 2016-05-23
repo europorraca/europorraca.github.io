@@ -7,18 +7,25 @@
  
     <title>AngularJS & Firebase Web App</title>
  
+  <script src="usuario/angular-drag-and-drop-lists.js"></script>
+  
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    
- 
-    <link href="justified-nav.css" rel="stylesheet">
-    <link href="../bootstrap/css/clean-blog.min.css" rel="stylesheet">
+    	
+	<link rel="stylesheet" href="usuario/framework/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="usuario/framework/vendor/bootstrap-theme.min.css">
+
+	
+	<link rel="stylesheet" type="text/css" href="usuario/simple.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+	 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+    
 </head>
  
 <body ng-controller="UsuarioCtrl">
+<!---->
  <header class="intro-header" style="background-image: url('bootstrap/img/logo3.jpg')">
         <div class="container">
             <div class="row">
@@ -32,6 +39,7 @@
             </div>
         </div>
     </header>
+
     <div  class="container">
           <div id="page-wrapper">
            
@@ -44,7 +52,7 @@
 		<input ng-model="profile.Nombre" ng-change="profile.$save()" type="Nombre" class="form-control" placeholder="Nombre" required="" autofocus="">
 		</div>
             <div class="form-group">
-		<label>Nombre</label>
+		<label>Frase</label>
             <input ng-model="profile.Frase" ng-change="profile.$save()" type="Frase" class="form-control" placeholder="Frase" required="">
 			</div>
 			
@@ -59,6 +67,77 @@
 	  
  </div>
  </div>
+ <div class="row">
+ <label>Seleccion de equipos</label>
+ </div>
+
+ <form name="myForm" >
+ 
+  <div class="row">
+   <div class="col-lg-3">
+  <label>Tus creditos: </label> 
+ 
+  <input ng-model="profile.Creditos" name="input" type="number" class="form-control"  min="0" max="99" required>
+    <div role="alert" class="alert alert-danger" ng-show="myForm.input.$error.required" >
+	<p class="help-block text-danger">
+    <span class="error" >
+      Te has gastado mas creditos de los disponibles</span>    
+	  </p>
+  </div>
+  </div>
+  <div class="col-lg-3">
+   <br/>
+  <button type="button"  ng-disabled="myForm.input.$error.required" ng-click="Guardar($event)"  class="btn  btn-primary ">Convocar!</button>
+   </div>
+  
+ </div>
+ </form>
+
+ <div class="simpleDemo row">
+  <div class="col-lg-12">
+
+  		
+  <div ng-repeat="(listName, list) in models.lists" class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{listName}}</h3>
+                    </div>
+                    
+			
+					 <div class="panel-body" >
+					<!-- The dnd-list directive allows to drop elements into it.
+     The dropped data will be added to the referenced list -->
+<ul dnd-list="list"
+ dnd-disable-if="list.length >= models.max">
+
+    <!-- The dnd-draggable directive makes an element draggable and will
+         transfer the object that was assigned to it. If an element was
+         dragged away, you have to remove it from the original list
+         yourself using the dnd-moved attribute -->
+    <li ng-repeat="item in list"
+        dnd-draggable="item"
+        dnd-moved="list.splice($index, 1)"
+        dnd-effect-allowed="move"
+        dnd-selected="models.selected = item"
+        ng-class="{'selected': models.selected === item}"
+        >
+        {{item.label}}  {{item.Creditos}}  
+    </li>
+</ul>
+					</div>
+					
+					
+                </div>
+            </div>
+			
+			
+			
+ 
+</div>
+
+ </div>
+ 
+ 
  </div>
     </div>
  

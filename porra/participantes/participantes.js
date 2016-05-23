@@ -20,6 +20,7 @@ $routeProvider.when('/participantes', {
 	if(user != null ){
 	
 		$scope.participantes = $firebaseObject(firebaseObj.child('Europorraquers'));
+		//$scope.array = chunk($scope.participantes,4);
 		//Nos loginamos en firebase
 		var token = localStorage.getItem("token");
 		firebase.auth().signInWithCustomToken(token).catch(function(error) {
@@ -65,6 +66,14 @@ angular.forEach($scope.participantes, function (value,index) {
     
 }
 }]);
+
+var chunk = function(arr, size) {
+   var newArr = [];
+      for (var i=0; i<arr.length; i+=size) {
+          newArr.push(arr.slice(i, i+size));
+      }
+   return newArr;
+};
 
 function writeUserData(userId, nombre, frase) {
   firebase.database().ref('Europorraquers/' + userId).set({

@@ -19,12 +19,29 @@ $routeProvider.when('/clasificacion', {
 	}
 	if(user != null ){
 	
-	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));			
-	//firebase.database().ref('Europorraquers').orderByChild('Puntos').once('value').then(function(snapshot) {
-     //$scope.clasificacion = snapshot.val();
-  
-     //});
-			
+	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));	
+
+	$scope.Usuarios = {        
+        list: {"Juagadores": []   }
+    };
+
+    firebase.database().ref('Europorraquers').once('value').then(function(snapshot) {
+		var usuarios = snapshot.val();
+		for(var usuario in usuarios){
+			$scope.Usuarios.list.Juagadores.push({Nombre: usuarios[usuario].Nombre, 
+			Equipo1: usuarios[usuario].Equipo1,
+			Equipo2: usuarios[usuario].Equipo2,
+			Equipo3: usuarios[usuario].Equipo3,
+			Equipo4: usuarios[usuario].Equipo4,
+			Puntos: usuarios[usuario].Puntos});
+		}
+		$scope.$apply(); 
+		
+	});
+	
+	
+	
+	$scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));				
 			
 	 
 	

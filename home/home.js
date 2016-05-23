@@ -15,6 +15,7 @@ $routeProvider.when('/home', {
 	var firebaseObj = new Firebase("https://blinding-fire-4682.firebaseio.com/");
 	var loginObj = $firebaseSimpleLogin(firebaseObj);
  
+ 
  var user = localStorage.getItem("User");
  if(user !=null ){
 	 localStorage.setItem("User",null);
@@ -26,7 +27,14 @@ $routeProvider.when('/home', {
 	}else{
 	var username = $scope.user.email;
     var password = $scope.user.password;
-    
+    firebase.initializeApp(config);
+	firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
 	     loginObj.$login('password', {
             email: username,
             password: password

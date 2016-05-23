@@ -3,7 +3,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('LaPorraca', [
-  'ngRoute',
+  'ngRoute','dndLists','angular.filter',
   'LaPorraca.usuario',
    'LaPorraca.clasificacion',
    'LaPorraca.participantes',     

@@ -15,12 +15,14 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+	
+	
 </head>
  
 <body ng-controller="ParticipantesCtrl" onload="CargarFoto()">
  
 <div class="container">
+<!--	-->
 <header class="intro-header" style="background-image: url('bootstrap/img/logo3.jpg')">
         <div class="container">
             <div class="row">
@@ -34,10 +36,11 @@
             </div>
         </div>
     </header>
+
 	 <div id="page-wrapper">
         
-        <div class="row">
-                <div class="col-lg-4" ng-repeat="usuario in participantes" >
+        <div class="row" ng-repeat="usuarios in participantes | groupBy:2">
+                <div class="col-xs-6" ng-repeat="usuario in usuarios" >
 	   <div class="panel panel-info" >
                         <div class="panel-heading">
                             {{usuario.Nombre}}
@@ -67,8 +70,6 @@
        </div>
     </div>
  </div>
-  <script>
-  
-  </script>
+
 </body>
 </html>

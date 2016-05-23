@@ -22,7 +22,7 @@
  
 <body ng-controller="ClasificacionCtrl">
  <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
+    <!-- Set your background image for this header on the line below. -->  
     <header class="intro-header" style="background-image: url('bootstrap/img/logo3.jpg')">
         <div class="container">
             <div class="row">
@@ -36,9 +36,27 @@
             </div>
         </div>
     </header>
-    <div class="container">
+	
 	 <div id="page-wrapper">
        
+	   <div class="row">
+	    <div class="col-lg-3"  >
+		</div>
+	    <div class="col-lg-6"  >
+		<div class="panel panel-info" >
+		<div class="panel-heading">
+                            Eventos del dia
+                        </div>
+						 <div class="panel-body">
+						 <div class="row">						 
+						  <p ng-bind="eventos.Eventos">       </p>
+							</div>
+                        </div>
+		</div>
+		</div>
+		<div class="col-lg-3"  >
+		</div>
+	   </div>
 			<div class="row">
 			
        <div class="table-responsive">
@@ -49,15 +67,19 @@
 						<th>Nombre</th>
 						<th>Equipo 1</th>
 						<th>Equipo 2</th>
+						<th>Equipo 3</th>
+						<th>Equipo 4</th>
 						<th>Puntos</th>
 						
 					</tr>
 				</thead>
 				<tbody id="teamListTable">
-					<tr ng-repeat="usuario in clasificacion">
+					<tr ng-repeat="usuario in Usuarios.list.Juagadores | orderBy:'-Puntos'">
 						<td>{{usuario.Nombre}}</td>
 						<td>{{usuario.Equipo1}}</td>
 						<td>{{usuario.Equipo2}}</td>
+						<td>{{usuario.Equipo3}}</td>
+						<td>{{usuario.Equipo4}}</td>
 						<td>{{usuario.Puntos}}</td>
 					</tr>
 				</tbody>
@@ -65,7 +87,7 @@
  </div>
  </div>
     </div>
- </div>
+
   
 </body>
 </html>

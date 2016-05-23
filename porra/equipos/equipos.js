@@ -21,10 +21,13 @@ $routeProvider.when('/equipos', {
 	
 	$scope.equipos = $firebaseObject(firebaseObj.child('Equipos'));			
 	$scope.usuarios = $firebaseObject(firebaseObj.child('Europorraquers'));
+	$scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));	
 	if(user == "jmateu"){
 	$scope.noesSuperusuario = false;
+	$scope.esSuperusuario = true;
 	}else{
 		$scope.noesSuperusuario = true;
+		$scope.esSuperusuario = false;
 	}
 	
 			
@@ -50,8 +53,13 @@ $routeProvider.when('/equipos', {
         });	
    $scope.usuarios.forEach(function(value,key) {
 	   aUsuarios[key] = $scope.usuarios[key]; 
-	   aUsuarios[key].Puntos = aEquipos[aUsuarios[key].Equipo1].Puntos + aEquipos[aUsuarios[key].Equipo2].Puntos;
+	   if(aUsuarios[key].Equipo1 != "" && aUsuarios[key].Equipo2 != "" && aUsuarios[key].Equipo3 != "" && aUsuarios[key].Equipo4 != ""){
+		   aUsuarios[key].Puntos = aEquipos[aUsuarios[key].Equipo1].Puntos + aEquipos[aUsuarios[key].Equipo2].Puntos + aEquipos[aUsuarios[key].Equipo3].Puntos + aEquipos[aUsuarios[key].Equipo4].Puntos;
+		   
+	   }else{aUsuarios[key].Puntos =0}
+	   
    });	   
+   //var eventos = {Eventos : ""}
 		
 	    writeData(aEquipos,aUsuarios);
 	
@@ -64,5 +72,6 @@ $routeProvider.when('/equipos', {
 function writeData(aEquipos,aUsuarios) {
 	firebase.database().ref('Equipos').update(aEquipos);
 	firebase.database().ref('Europorraquers').update(aUsuarios);
+	
   
 }
