@@ -19,6 +19,8 @@ $routeProvider.when('/equipos', {
 	}
 	if(user != null ){
 	
+	
+	$scope.jugadores = $firebaseObject(firebaseObj.child('Jugadores'));
 	$scope.equipos = $firebaseObject(firebaseObj.child('Equipos'));			
 	$scope.usuarios = $firebaseObject(firebaseObj.child('Europorraquers'));
 	$scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));	
