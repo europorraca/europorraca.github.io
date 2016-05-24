@@ -19,41 +19,31 @@ $routeProvider.when('/usuario', {
 	}
 	if(user != null ){
 	$scope.profile = $firebaseObject(firebaseObj.child('Europorraquers').child(user));			
+	$scope.CreditosTotales = 0;
 	}else{
 		alert("Usario incorrecto por favor vuelve a loginarte")
 	}
-	
-    
-
-	
-	
-	 
-	//PAra guardar	 
- $scope.Guardar = function(event) {
-    event.preventDefault();  // To prevent form refresh
-	if($scope.models.lists.Seleccionados.length >4){
-		alert('Has seleccionado mas de 4 equipos!');
-		return false;
-	}
-		
-	if($scope.models.lists.Seleccionados[0] != null){var Equipo1 = $scope.models.lists.Seleccionados[0].label;}else{var Equipo1 = "";}
-	if($scope.models.lists.Seleccionados[1] != null){var Equipo2 = $scope.models.lists.Seleccionados[1].label;}else{var Equipo2 = "";}
-	if($scope.models.lists.Seleccionados[2] != null){var Equipo3 = $scope.models.lists.Seleccionados[2].label;}else{var Equipo3 = "";}
-	if($scope.models.lists.Seleccionados[3] != null){var Equipo4 = $scope.models.lists.Seleccionados[3].label;}else{var Equipo4 = "";}
-	    
-		//Validamos los puntos
-		
-	var user = localStorage.getItem("User");
-	if(user.split("@").length > 0){
-		user = user.split("@")[0];
-	}
-	
-	writeEquipos(user,Equipo1,Equipo2,Equipo3,Equipo4);
-	 
-}
 
 //Para seleccionar
- 
+ $scope.dropdown = {  
+		jugadorSelect: null, 
+        list: {"Jugadores": []   }
+    };
+	
+	firebase.database().ref('Jugadores').once('value').then(function(snapshot) {
+	 var jugadores = snapshot.val();
+	 var jugador = new Object();
+	 for(jugador in jugadores){
+		
+		 $scope.dropdown.list.Jugadores.push({label: jugador, Creditos: jugadores[jugador].Creditos});
+		 
+	 }
+	 
+	 
+     $scope.$apply(); 
+	 
+   });
+   
   
   $scope.models = {
         selected: null,		
@@ -86,6 +76,7 @@ $routeProvider.when('/usuario', {
 		 var Creditos2 = 0;
 		 var Creditos3 = 0;
 		 var Creditos4 = 0;
+		 var CreditosJugador = 0;
 		 if(objectFindByKey($scope.Selecciones.list.Totales,'label',usuario.Equipo1)){
 			   Creditos1 = objectFindByKeyValue($scope.Selecciones.list.Totales,'label',usuario.Equipo1);
 			}
@@ -98,6 +89,12 @@ $routeProvider.when('/usuario', {
 			if(objectFindByKey($scope.Selecciones.list.Totales,'label',usuario.Equipo4)){
 			   Creditos4 = objectFindByKeyValue($scope.Selecciones.list.Totales,'label',usuario.Equipo4);
 			}
+			//Para los jugadores
+			if(usuario.Jugador != null){				
+				CreditosJugador = objectFindByKeyValue($scope.dropdown.list.Jugadores,'label',usuario.Jugador);
+				$scope.dropdown.jugadorSelect = usuario.Jugador;
+			}
+		 
 		 
 		 if(usuario.Equipo1 != ""){$scope.models.lists.Seleccionados.push({label: usuario.Equipo1, Creditos: Creditos1});}
 		 if(usuario.Equipo2 != ""){$scope.models.lists.Seleccionados.push({label: usuario.Equipo2, Creditos: Creditos2});}
@@ -124,7 +121,23 @@ $routeProvider.when('/usuario', {
    
 	});
 	
+	$scope.$watch('dropdown', function(dropdown) {
+		var Total = 0;
+		if(dropdown.jugadorSelect != null){
+			
+			Total = objectFindByKeyValue(dropdown.list.Jugadores,'label',dropdown.jugadorSelect)
+			
+		}
+		//Para las selecciones
+		for(var equipo in $scope.models.lists.Seleccionados){
+			if(objectFindByKey($scope.Selecciones.list.Totales,'label',$scope.models.lists.Seleccionados[equipo].label)){
+			   Total = Total + objectFindByKeyValue($scope.Selecciones.list.Totales,'label',$scope.models.lists.Seleccionados[equipo].label);
+			}
+			//Total = Total +  model.lists.Seleccionados[equipo].Creditos;
+		}
 		
+       $scope.CreditosTotales = 35 - Total;
+    }, true);	
   
   	
     $scope.$watch('models', function(model) {
@@ -136,11 +149,57 @@ $routeProvider.when('/usuario', {
 			}
 			//Total = Total +  model.lists.Seleccionados[equipo].Creditos;
 		}
-		
-       $scope.profile.Creditos = 35 - Total;
+		//Para los jugadores
+			if($scope.dropdown.jugadorSelect != null){				
+				var CreditosJugador;
+				CreditosJugador = objectFindByKeyValue($scope.dropdown.list.Jugadores,'label',$scope.dropdown.jugadorSelect);
+				Total = Total + CreditosJugador
+			}
+       $scope.CreditosTotales = 35 - Total;
     }, true);
 
-   
+   	//PAra guardar	 
+ $scope.Guardar = function(event) {
+    event.preventDefault();  // To prevent form refresh
+	if($scope.models.lists.Seleccionados.length >4){
+		alert('Has seleccionado mas de 4 equipos!');
+		return false;
+	}
+		
+	if($scope.models.lists.Seleccionados[0] != null){var Equipo1 = $scope.models.lists.Seleccionados[0].label;}else{var Equipo1 = "";}
+	if($scope.models.lists.Seleccionados[1] != null){var Equipo2 = $scope.models.lists.Seleccionados[1].label;}else{var Equipo2 = "";}
+	if($scope.models.lists.Seleccionados[2] != null){var Equipo3 = $scope.models.lists.Seleccionados[2].label;}else{var Equipo3 = "";}
+	if($scope.models.lists.Seleccionados[3] != null){var Equipo4 = $scope.models.lists.Seleccionados[3].label;}else{var Equipo4 = "";}
+	    
+		//Validamos los puntos
+		
+	    var Total = 0;
+		if($scope.dropdown.jugadorSelect != null){
+			
+			Total = objectFindByKeyValue($scope.dropdown.list.Jugadores,'label',$scope.dropdown.jugadorSelect)
+			
+		}
+		//Para las selecciones
+		for(var equipo in $scope.models.lists.Seleccionados){
+			if(objectFindByKey($scope.Selecciones.list.Totales,'label',$scope.models.lists.Seleccionados[equipo].label)){
+			   Total = Total + objectFindByKeyValue($scope.Selecciones.list.Totales,'label',$scope.models.lists.Seleccionados[equipo].label);
+			}
+			
+		}
+		
+       $scope.CreditosTotales = 35 - Total;
+	   if($scope.CreditosTotales < 0){
+		   alert('Has gastado mas de 35 créditos');
+		return false;
+	   }
+	//Jugadores
+		if($scope.dropdown.jugadorSelect != null){				
+				var Jugador = $scope.dropdown.jugadorSelect;				
+		}
+		
+	writeEquipos(user,Equipo1,Equipo2,Equipo3,Equipo4,Jugador);
+	 
+}
 }]);
 
 function objectFindByKey(array, key, value) {
@@ -161,11 +220,12 @@ function objectFindByKeyValue(array, key, value) {
     return 0;
 }
 
-function writeEquipos(userId, valEquipo1, valEquipo2, valEquipo3, valEquipo4) {
+function writeEquipos(userId, valEquipo1, valEquipo2, valEquipo3, valEquipo4, valJugador) {
   firebase.database().ref('Europorraquers/' +  userId).update({Equipo1 : valEquipo1});
   firebase.database().ref('Europorraquers/' +  userId).update({Equipo2 : valEquipo2});
   firebase.database().ref('Europorraquers/' +  userId).update({Equipo3 : valEquipo3});
   firebase.database().ref('Europorraquers/' +  userId).update({Equipo4 : valEquipo4});
+  firebase.database().ref('Europorraquers/' +  userId).update({Jugador : valJugador});
  
   alert('La convocatoria se ha realizado con exito');
   

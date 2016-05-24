@@ -76,7 +76,7 @@
    <div class="col-lg-3">
   <label>Te quedan estos créditos: </label> 
  
-  <input ng-model="profile.Creditos" name="input" type="number" class="form-control"  min="0" max="99" required>
+  <input ng-model="CreditosTotales" name="input" type="number" class="form-control"  min="0" max="99" required>
     <div role="alert" class="alert alert-danger" ng-show="myForm.input.$error.required" >
 	<p class="help-block text-danger">
     <span class="error" >
@@ -138,6 +138,14 @@
 </div>
  </div>
  </div> 
+ <div class="row">
+ <div class="col-lg-3">
+ <label for="repeatSelect"> Jugadores: </label>
+    <select name="repeatSelect" id="repeatSelect" ng-model="dropdown.jugadorSelect">
+      <option ng-repeat="jugador in dropdown.list.Jugadores" value="{{jugador.label}}">{{jugador.label}} {{jugador.Creditos}} </option>
+    </select>
+	</div>
+	</div>
  <div class="row">
  <div class="col-lg-3">
    <br/>
