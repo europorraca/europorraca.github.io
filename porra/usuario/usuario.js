@@ -158,14 +158,23 @@ $routeProvider.when('/usuario', {
        $scope.CreditosTotales = 35 - Total;
     }, true);
 
-   	//PAra guardar	 
+   	//Para guardar	 
  $scope.Guardar = function(event) {
     event.preventDefault();  // To prevent form refresh
 	if($scope.models.lists.Seleccionados.length >4){
 		alert('Has seleccionado mas de 4 equipos!');
 		return false;
 	}
+	if($scope.models.lists.Seleccionados.length <4){
+		alert('Has seleccionado menos de 4 equipos!');
+		return false;
+	}
 		
+	if($scope.dropdown.jugadorSelect == null){
+		alert('Debes de seleccionar un jugador');
+		return false;
+	}
+			
 	if($scope.models.lists.Seleccionados[0] != null){var Equipo1 = $scope.models.lists.Seleccionados[0].label;}else{var Equipo1 = "";}
 	if($scope.models.lists.Seleccionados[1] != null){var Equipo2 = $scope.models.lists.Seleccionados[1].label;}else{var Equipo2 = "";}
 	if($scope.models.lists.Seleccionados[2] != null){var Equipo3 = $scope.models.lists.Seleccionados[2].label;}else{var Equipo3 = "";}
