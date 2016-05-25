@@ -47,23 +47,29 @@ $routeProvider.when('/equipos', {
 	
 	var aEquipos = {};
 	var aUsuarios = {};
-	
+	var aJugadores = {};
+	//Guardamos la puntuacion del equipo
 	$scope.equipos.forEach(function(value,key) {
-		    aEquipos[key] = $scope.equipos[key];           
-			//Guardamos la puntuacion del equipo
+		    aEquipos[key] = $scope.equipos[key];           			
 			aEquipos[key].Puntos = $scope.equipos[key].Partido1 + $scope.equipos[key].Partido2 + $scope.equipos[key].Partido3 + $scope.equipos[key].Partido4 + $scope.equipos[key].Partido5 + $scope.equipos[key].Partido6 + $scope.equipos[key].Partido7;
+        });	
+		//Guardamos la puntuacion de los jugadores
+		$scope.jugadores.forEach(function(value,key) {
+		    aJugadores[key] = $scope.jugadores[key];           
+			//Guardamos la puntuacion del equipo
+			aJugadores[key].Puntos = $scope.jugadores[key].Puntos ;
         });	
    $scope.usuarios.forEach(function(value,key) {
 	   aUsuarios[key] = $scope.usuarios[key]; 
-	   if(aUsuarios[key].Equipo1 != "" && aUsuarios[key].Equipo2 != "" && aUsuarios[key].Equipo3 != "" && aUsuarios[key].Equipo4 != ""){
-		   aUsuarios[key].Puntos = aEquipos[aUsuarios[key].Equipo1].Puntos + aEquipos[aUsuarios[key].Equipo2].Puntos + aEquipos[aUsuarios[key].Equipo3].Puntos + aEquipos[aUsuarios[key].Equipo4].Puntos;
+	   if(aUsuarios[key].Equipo1 != "" && aUsuarios[key].Equipo2 != "" && aUsuarios[key].Equipo3 != "" && aUsuarios[key].Equipo4 != "" && aUsuarios[key].Jugador != ""){
+		   aUsuarios[key].Puntos = aJugadores[aUsuarios[key].Jugador].Puntos  + aEquipos[aUsuarios[key].Equipo1].Puntos + aEquipos[aUsuarios[key].Equipo2].Puntos + aEquipos[aUsuarios[key].Equipo3].Puntos + aEquipos[aUsuarios[key].Equipo4].Puntos;
 		   
 	   }else{aUsuarios[key].Puntos =0}
 	   
    });	   
    //var eventos = {Eventos : ""}
 		
-	    writeData(aEquipos,aUsuarios);
+	    writeData(aEquipos,aUsuarios,aJugadores);
 	
 	
     
@@ -71,9 +77,10 @@ $routeProvider.when('/equipos', {
 }
 }]);
 
-function writeData(aEquipos,aUsuarios) {
+function writeData(aEquipos,aUsuarios,aJugadores) {
 	firebase.database().ref('Equipos').update(aEquipos);
 	firebase.database().ref('Europorraquers').update(aUsuarios);
+	firebase.database().ref('Jugadores').update(aJugadores);
 	
   
 }

@@ -33,6 +33,7 @@ $routeProvider.when('/clasificacion', {
 			Equipo2: usuarios[usuario].Equipo2,
 			Equipo3: usuarios[usuario].Equipo3,
 			Equipo4: usuarios[usuario].Equipo4,
+			Jugador: usuarios[usuario].Jugador,
 			Puntos: usuarios[usuario].Puntos});
 		}
 		$scope.$apply(); 
