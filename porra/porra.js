@@ -8,7 +8,8 @@ angular.module('LaPorraca', [
    'LaPorraca.clasificacion',
    'LaPorraca.participantes',     
    'LaPorraca.equipos',
-   'LaPorraca.reglas'    
+   'LaPorraca.reglas',
+   'LaPorraca.live'    
 ]).
 config(['$routeProvider', function($routeProvider) {
 	

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LaPorraca">
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+ 
+    <title>AngularJS & Firebase Web App</title>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+ 
+    <link href="justified-nav.css" rel="stylesheet">
+ 
+    <link href="../bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+	<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+	
+</head>
+ 
+<body ng-controller="LiveCtrl">
+ <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->  
+    <header class="intro-header" style="background-image: url('bootstrap/img/logo3.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Live</h1>
+                        <hr class="small">
+                        <span class="subheading">Live.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+	
+	 <div id="page-wrapper">
+	 <div class="row">
+        <div class="col-lg-6">
+	  <div class="chat-panel panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-comments fa-fw"></i>
+                            Chat                           
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="chat">
+							<li class="left clearfix" ng-repeat="frase in chat.list.Frases">
+							<span class="chat-img pull-left">
+                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                    </span>
+							{{frase.Frase}} 
+							</li>
+                               
+                                
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="btn-input" ng-model="Actual" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" ng-click="Guardar($event)" id="btn-chat">
+                                        Enviar
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.panel-footer -->
+                    </div>
+                    <!-- /.panel .chat-panel -->
+					</div>
+					</div>
+		
+    </div>
+
+  
+</body>
+</html>
