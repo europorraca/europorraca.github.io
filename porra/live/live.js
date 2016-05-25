@@ -25,13 +25,36 @@ $routeProvider.when('/live', {
     $scope.chat = {        
         list: {"Frases": []   }
     };
+	
+	firebase.database().ref('Europorraquers/' + user).once('value').then(function(snapshot) {
+		$scope.AvatarUser = snapshot.val().Avatar;
+	});
+	
 	firebase.database().ref('Live/Chat').once('value').then(function(snapshot) {
 	 var frases = snapshot.val();
 	 var frase = new Object();
 	 for(frase in frases){
-		if(frase != "Actual"){
+		
 		$scope.chat.list.Frases.push({Frase: frases[frase]});	
-		}
+		
+		 
+		 
+	 }
+	 
+     $scope.$apply(); 
+	 
+   });
+   
+   $scope.chatCompleto = {        
+        list: {"Frases": []   }
+    };
+	firebase.database().ref('Live/ChatCompleto').once('value').then(function(snapshot) {
+	 var frases = snapshot.val();
+	 var frase = new Object();
+	 for(frase in frases){
+		
+		$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});	
+		
 		 
 		 
 	 }
@@ -47,30 +70,37 @@ $routeProvider.when('/live', {
 		alert("Usario incorrecto por favor vuelve a loginarte");
 	}
 	
-	var commentsRef = firebase.database().ref('Live/Chat');
-	commentsRef.on('child_changed', function(data) {
-  //setCommentValues(postElement, data.key, data.val().text, data.val().author);
-  //alert(data.key + ' ' + data.val().text + ' ' + data.val().author );
-});
 	
-	// firebase.database().ref('Live/Chat/Frase1').on('value', function(snapshot) {
+	
+	
+	////////////Completo
+	 
+ $scope.GuardarCompleto = function(event) {
+    event.preventDefault();  // To prevent form refresh
+	
+  
+	
+	var frase1;
+	var frase2;
+	var frase3;
+	var frase4;
+	var frase5;
+	
+	frase1 = {Frase: $scope.chatCompleto.list.Frases[1].Frase, Avatar: $scope.chatCompleto.list.Frases[1].Avatar};
+	frase2 = {Frase: $scope.chatCompleto.list.Frases[2].Frase, Avatar: $scope.chatCompleto.list.Frases[2].Avatar};
+	frase3 = {Frase: $scope.chatCompleto.list.Frases[3].Frase, Avatar: $scope.chatCompleto.list.Frases[3].Avatar};
+	frase4 = {Frase: $scope.chatCompleto.list.Frases[4].Frase, Avatar: $scope.chatCompleto.list.Frases[4].Avatar};
+	frase5 = {Frase: $scope.Usuario + ' : ' + $scope.Actual , Avatar : $scope.AvatarUser};
+	writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope);
     
-     //alert(snapshot.val());
-    //});
-	
+    
+}
+////////////simple
 	 
  $scope.Guardar = function(event) {
     event.preventDefault();  // To prevent form refresh
 	
-    //var frase = $scope.user.Frase;
-	//for (var i = 0; i < $scope.chat.list.Frases.length - 1; i++) { 
-	//$scope.chat.list.Frases[i] = $scope.chat.list.Frases[i+1]
-   
-  //  }
-	//$scope.chat.list.Frases[$scope.chat.list.Frases.length - 1].Frase = "juan"
-	
-	//firebase.database().ref('Live/Chat').update($scope.chat.list.Frases);
-	
+  
 	
 	var frase1;
 	var frase2;
@@ -87,6 +117,7 @@ $routeProvider.when('/live', {
     
     
 }
+
 }]);
 
 function writeUserData(frase1,frase2,frase3,frase4,frase5,$scope) {
@@ -110,6 +141,33 @@ function writeUserData(frase1,frase2,frase3,frase4,frase5,$scope) {
 			 
 		 
 	 }
+	 
+     $scope.$apply(); 
+	 
+   });
+}
+
+///////////COMPLETO
+function writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope) {
+  firebase.database().ref('Live/ChatCompleto').set({
+    Frase1: frase1,
+    Frase2: frase2,
+	Frase3: frase3,
+    Frase4: frase4,
+	Frase5: frase5	
+    
+  });
+  firebase.database().ref('Live/ChatCompleto').once('value').then(function(snapshot) {
+	 var frases = snapshot.val();
+	 var frase = new Object();
+	 $scope.chatCompleto = {        
+        list: {"Frases": []   }
+    };
+	$scope.Actual = "";
+	 for(frase in frases){		
+		$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});		
+			
+		 	 }
 	 
      $scope.$apply(); 
 	 

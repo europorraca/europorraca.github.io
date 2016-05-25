@@ -10,6 +10,9 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     
  
+    <!-- Custom CSS -->
+    <link href="./live/sb-admin-2.css" rel="stylesheet">
+	
     <link href="justified-nav.css" rel="stylesheet">
  
     <link href="../bootstrap/css/clean-blog.min.css" rel="stylesheet">
@@ -48,11 +51,13 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="chat">
-							<li class="left clearfix" ng-repeat="frase in chat.list.Frases">
+							<li class="left clearfix" ng-repeat="frase in chatCompleto.list.Frases">
 							<span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-							{{frase.Frase}} 
+                                        <img ng-src="{{frase.Avatar}}" height="40" width="40" alt="Avatar" class="img-circle" />
+                                    </span>	
+									<p>
+							        {{frase.Frase}} 
+								   </p>									
 							</li>
                                
                                 
@@ -63,7 +68,7 @@
                             <div class="input-group">
                                 <input id="btn-input" ng-model="Actual" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" ng-click="Guardar($event)" id="btn-chat">
+                                    <button class="btn btn-warning btn-sm" ng-click="GuardarCompleto($event)" id="btn-chat">
                                         Enviar
                                     </button>
                                 </span>
@@ -77,6 +82,6 @@
 		
     </div>
 
-  
+ 
 </body>
 </html>
