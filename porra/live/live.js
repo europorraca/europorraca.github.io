@@ -79,7 +79,11 @@ $routeProvider.when('/live', {
 		alert("Usario incorrecto por favor vuelve a loginarte");
 	}
 	
-	
+	$("#fraseActual").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#enviar").click();
+    }
+});
 	
 	
 	////////////Completo
@@ -94,12 +98,12 @@ $routeProvider.when('/live', {
 	var frase3;
 	var frase4;
 	var frase5;
-	
+	var fraseActual = document.getElementById("fraseActual").value;
 	frase1 = {Frase: $scope.chatCompleto.list.Frases[1].Frase, Avatar: $scope.chatCompleto.list.Frases[1].Avatar};
 	frase2 = {Frase: $scope.chatCompleto.list.Frases[2].Frase, Avatar: $scope.chatCompleto.list.Frases[2].Avatar};
 	frase3 = {Frase: $scope.chatCompleto.list.Frases[3].Frase, Avatar: $scope.chatCompleto.list.Frases[3].Avatar};
 	frase4 = {Frase: $scope.chatCompleto.list.Frases[4].Frase, Avatar: $scope.chatCompleto.list.Frases[4].Avatar};
-	frase5 = {Frase: $scope.Usuario + ' : ' + $scope.Actual , Avatar : $scope.AvatarUser};
+	frase5 = {Frase: $scope.Usuario + ' : ' + fraseActual , Avatar : $scope.AvatarUser};
 	writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope);
     
     
@@ -177,7 +181,7 @@ function writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope) {
 		$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});		
 			
 		 	 }
-	 
+	 document.getElementById("fraseActual").value = "";
      $scope.$apply(); 
 	 
    });
