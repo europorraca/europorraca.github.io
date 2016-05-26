@@ -30,6 +30,17 @@ $routeProvider.when('/live', {
 		$scope.AvatarUser = snapshot.val().Avatar;
 	});
 	
+	 $scope.chatCompleto = {        
+        list: {"Frases": []   }
+    };
+	
+	
+	firebase.database().ref('Live/ChatCompleto').on('value', function(snapshot) {
+		var frases = snapshot.val();
+  updateStarCount($scope, frases);
+});
+	
+	
 	firebase.database().ref('Live/Chat').once('value').then(function(snapshot) {
 	 var frases = snapshot.val();
 	 var frase = new Object();
@@ -45,23 +56,21 @@ $routeProvider.when('/live', {
 	 
    });
    
-   $scope.chatCompleto = {        
-        list: {"Frases": []   }
-    };
-	firebase.database().ref('Live/ChatCompleto').once('value').then(function(snapshot) {
-	 var frases = snapshot.val();
-	 var frase = new Object();
-	 for(frase in frases){
+  
+	//firebase.database().ref('Live/ChatCompleto').once('value').then(function(snapshot) {
+	// var frases = snapshot.val();
+	// var frase = new Object();
+	// for(frase in frases){
 		
-		$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});	
+	//	$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});	
 		
 		 
 		 
-	 }
+	// }
 	 
-     $scope.$apply(); 
+    // $scope.$apply(); 
 	 
-   });
+   //});
 					
 			
 	 
@@ -172,4 +181,20 @@ function writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope) {
      $scope.$apply(); 
 	 
    });
+}
+
+
+function updateStarCount($scope, frases){
+	
+	 var frase = new Object();
+	 $scope.chatCompleto = {        
+        list: {"Frases": []   }
+    };
+	$scope.Actual = "";
+	 for(frase in frases){		
+		$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});		
+			
+		 	 }
+	 
+     $scope.$apply(); 
 }
