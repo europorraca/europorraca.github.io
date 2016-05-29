@@ -1,7 +1,8 @@
 'use strict';
+var mymodal = angular.module('mymodal', []);
  
 angular.module('LaPorraca.live', ['ngRoute','firebase'])
- 
+
 // Declared route 
 .config(['$routeProvider', function($routeProvider) {
 $routeProvider.when('/live', {
@@ -12,6 +13,10 @@ $routeProvider.when('/live', {
  
 // Home controller
 .controller('LiveCtrl', ['$scope','$firebaseObject','$window',function($scope,$firebaseObject,$window) {
+	 $scope.showModal = false;
+    $scope.toggleModal = function(){
+        $scope.showModal = !$scope.showModal;
+    };
 	var firebaseObj = new Firebase("https://blinding-fire-4682.firebaseio.com/");	
 	var user = localStorage.getItem("User");
 	if(user.split("@").length > 0){
@@ -84,7 +89,18 @@ $routeProvider.when('/live', {
         $("#enviar").click();
     }
 });
+	$scope.Cerveza = function(event) {
+    event.preventDefault();  // To prevent form refresh
+	if(document.getElementById("cerveza").hidden == false){
+		document.getElementById("cerveza").hidden = true;	
+	}else{
+		document.getElementById("cerveza").hidden = false;
+	}
 	
+  
+    
+    
+}
 	
 	////////////Completo
 	 
@@ -202,3 +218,6 @@ function updateStarCount($scope, frases){
 	 
      $scope.$apply(); 
 }
+
+
+
