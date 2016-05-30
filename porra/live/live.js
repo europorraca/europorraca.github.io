@@ -114,13 +114,20 @@ $routeProvider.when('/live', {
 	var frase3;
 	var frase4;
 	var frase5;
+	var frase6;
+	var frase7;
+	var frase8;
+	
 	var fraseActual = document.getElementById("fraseActual").value;
 	frase1 = {Frase: $scope.chatCompleto.list.Frases[1].Frase, Avatar: $scope.chatCompleto.list.Frases[1].Avatar};
 	frase2 = {Frase: $scope.chatCompleto.list.Frases[2].Frase, Avatar: $scope.chatCompleto.list.Frases[2].Avatar};
 	frase3 = {Frase: $scope.chatCompleto.list.Frases[3].Frase, Avatar: $scope.chatCompleto.list.Frases[3].Avatar};
 	frase4 = {Frase: $scope.chatCompleto.list.Frases[4].Frase, Avatar: $scope.chatCompleto.list.Frases[4].Avatar};
-	frase5 = {Frase: $scope.Usuario + ' : ' + fraseActual , Avatar : $scope.AvatarUser};
-	writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope);
+	frase5 = {Frase: $scope.chatCompleto.list.Frases[5].Frase, Avatar: $scope.chatCompleto.list.Frases[5].Avatar};
+	frase6 = {Frase: $scope.chatCompleto.list.Frases[6].Frase, Avatar: $scope.chatCompleto.list.Frases[6].Avatar};
+	frase7 = {Frase: $scope.chatCompleto.list.Frases[7].Frase, Avatar: $scope.chatCompleto.list.Frases[7].Avatar};
+	frase8 = {Frase: $scope.Usuario + ' : ' + fraseActual , Avatar : $scope.AvatarUser};
+	writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,frase6,frase7,frase8,$scope);
     
     
 }
@@ -177,14 +184,16 @@ function writeUserData(frase1,frase2,frase3,frase4,frase5,$scope) {
 }
 
 ///////////COMPLETO
-function writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,$scope) {
+function writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,frase6,frase7,frase8,$scope) {
   firebase.database().ref('Live/ChatCompleto').set({
     Frase1: frase1,
     Frase2: frase2,
 	Frase3: frase3,
     Frase4: frase4,
-	Frase5: frase5	
-    
+	Frase5: frase5,	
+	Frase6: frase6,
+	Frase7: frase7,
+	Frase8: frase8    
   });
   firebase.database().ref('Live/ChatCompleto').once('value').then(function(snapshot) {
 	 var frases = snapshot.val();
