@@ -21,7 +21,7 @@ config(['$routeProvider', function($routeProvider) {
 function cargarUsuario(){
 	var nombre = localStorage.getItem("User");
 	var div = document.getElementById("Aviso");
-	div.textContent = nombre;
+	
 	
 }
 
