@@ -41,8 +41,8 @@
         
         <div class="row" ng-repeat="usuarios in participantes | groupBy:2">
                 <div class="col-xs-6" ng-repeat="usuario in usuarios" >
-	   <div class="panel panel-info" >
-                        <div class="panel-heading">
+				<div ng-if="usuario.Pagado == 1" class="panel panel-info">
+    <div class="panel-heading">
                             {{usuario.Nombre}}
                         </div>
                         <div class="panel-body">
@@ -63,7 +63,31 @@
                         <div class="panel-footer">
                             {{usuario.Frase}}
                         </div>
-                    </div>
+</div>
+<div ng-if="usuario.Pagado == 0 " class="panel panel-danger">
+    <div class="panel-heading">
+                            {{usuario.Nombre}}
+                        </div>
+                        <div class="panel-body">
+						 <div class="row">
+						  <div class="col-xs-3">
+						  <img  ng-src="{{usuario.Avatar}}" alt="Avatar" id="avatar" height="60" width="60">
+						  </div>
+						 
+                           <div class="col-xs-6">
+							<p>Equipos: </p>
+							<p>{{usuario.Equipo1}}  {{usuario.Equipo2}}</p>
+							<p>{{usuario.Equipo3}}  {{usuario.Equipo4}} </p>
+							<p>Jugador:  {{usuario.Jugador}}     </p>
+							<p>      </p>
+							</div>
+							</div>
+                        </div>
+                        <div class="panel-footer">
+                            {{usuario.Frase}}
+                        </div>
+</div>
+	   
 					</div>
 					</div>
 	  <div class="table-responsive">

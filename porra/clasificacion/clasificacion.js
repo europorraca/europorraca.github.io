@@ -20,10 +20,12 @@ $routeProvider.when('/clasificacion', {
 	if(user != null ){
 	
 	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));	
-
+$scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));	
 	$scope.Usuarios = {        
         list: {"Juagadores": []   }
     };
+	
+	
 
     firebase.database().ref('Europorraquers').once('value').then(function(snapshot) {
 		var usuarios = snapshot.val();
@@ -36,13 +38,13 @@ $routeProvider.when('/clasificacion', {
 			Jugador: usuarios[usuario].Jugador,
 			Puntos: usuarios[usuario].Puntos});
 		}
+		 
 		$scope.$apply(); 
-		
 	});
 	
+		
 	
-	
-	$scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));				
+				
 			
 	 
 	
@@ -64,6 +66,20 @@ $routeProvider.when('/clasificacion', {
     
     
 }
+
+$scope.Historico = function(event) {
+    event.preventDefault();  // To prevent form refresh
+	if(document.getElementById("historico").hidden == false){
+		document.getElementById("historico").hidden = true;	
+	}else{
+		document.getElementById("historico").hidden = false;
+	}
+	
+     
+    
+}
+
+
 }]);
 
 function writeUserData(userId, nombre, frase) {
