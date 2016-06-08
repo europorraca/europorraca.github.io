@@ -11,19 +11,54 @@ $routeProvider.when('/clasificacion', {
 }])
  
 // Home controller
-.controller('ClasificacionCtrl', ['$scope','$firebaseObject','$window',function($scope,$firebaseObject,$window) {
+.controller('ClasificacionCtrl', ['$scope','$firebaseObject','$window','$http',function($scope,$firebaseObject,$window,$http) {
 	var firebaseObj = new Firebase("https://blinding-fire-4682.firebaseio.com/");	
 	var user = localStorage.getItem("User");
 	if(user.split("@").length > 0){
 		user = user.split("@")[0];
 	}
 	if(user != null ){
+	//PARA EL LIVE	
+		
+			$.ajax({
+  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
+  url: 'http://api.football-data.org/v1/soccerseasons/424',
+  dataType: 'json',
+  type: 'GET',
+}).done(function(response) {
+  // do something with the response, e.g. isolate the id of a linked resource        
+  var regex = /.*?(\d+)$/; // the ? makes the first part non-greedy
+  $scope.partidoActual = response.currentMatchday;
+   
+}); 
+	
+	$.ajax({
+  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
+  url: 'http://api.football-data.org/v1/soccerseasons/424/fixtures',
+  dataType: 'json',
+  type: 'GET',
+}).done(function(response) {
+  // do something with the response, e.g. isolate the id of a linked resource        
+  
+   //$scope.golEncasa = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
+   //$scope.golFuera = response.fixtures[$scope.partidoActual-1].result.goalsAwayTeam;
+   $scope.golEncasa = 3;
+   $scope.golFuera = 1;
+   $scope.EquipoCasa = response.fixtures[$scope.partidoActual-1].homeTeamName
+   $scope.EquipoFuera = response.fixtures[$scope.partidoActual-1].awayTeamName
+  $scope.$apply(); 
+}); 
+
+	//PARA EL LIVE	
+		
 	
 	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));	
 $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));	
 	$scope.Usuarios = {        
         list: {"Juagadores": []   }
     };
+	
+	
 	
 	
 
