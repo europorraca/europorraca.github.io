@@ -39,19 +39,32 @@ $routeProvider.when('/clasificacion', {
   type: 'GET',
 }).done(function(response) {
   // do something with the response, e.g. isolate the id of a linked resource        
-  
-   //$scope.golEncasa = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
-   //$scope.golFuera = response.fixtures[$scope.partidoActual-1].result.goalsAwayTeam;
-   $scope.golEncasa = 3;
-   $scope.golFuera = 1;
+  if(response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam == null){
+	  $scope.golEncasa = 0;
+  }else{
+	  $scope.golEncasa = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
+  }
+   if(response.fixtures[$scope.partidoActual-1].result.goalsAwayTeam == null){
+	  $scope.golFuera = 0;
+  }else{
+	  $scope.golFuera = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
+  }
+   
    $scope.EquipoCasa = response.fixtures[$scope.partidoActual-1].homeTeamName
    $scope.EquipoFuera = response.fixtures[$scope.partidoActual-1].awayTeamName
   $scope.$apply(); 
 }); 
 
 	//PARA EL LIVE	
-		
 	
+$scope.Ayer = function(event) {
+    event.preventDefault();  // To prevent form refresh
+	if(document.getElementById("ayer").hidden == false){
+		document.getElementById("ayer").hidden = true;	
+	}else{
+		document.getElementById("ayer").hidden = false;
+	}	
+}
 	$scope.clasificacion = $firebaseObject(firebaseObj.child('Europorraquers'));	
 $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));	
 	$scope.Usuarios = {        
@@ -102,17 +115,7 @@ $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));
     
 }
 
-$scope.Historico = function(event) {
-    event.preventDefault();  // To prevent form refresh
-	if(document.getElementById("historico").hidden == false){
-		document.getElementById("historico").hidden = true;	
-	}else{
-		document.getElementById("historico").hidden = false;
-	}
-	
-     
-    
-}
+
 
 
 }]);

@@ -39,7 +39,17 @@ $routeProvider.when('/equipos', {
 		alert("Usario incorrecto por favor vuelve a loginarte");
 	}
 	
-	 
+	$scope.Historico = function(event) {
+    event.preventDefault();  // To prevent form refresh
+	if(document.getElementById("historico").hidden == false){
+		document.getElementById("historico").hidden = true;	
+	}else{
+		document.getElementById("historico").hidden = false;
+	}
+	
+     
+    
+} 
 	
 	 
  $scope.Guardar = function(event) {

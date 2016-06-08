@@ -35,7 +35,34 @@
  
     <div class="container">
 	<div id="page-wrapper">
-       
+        <div class="row">
+	   <div class="col-lg-3"  >
+		</div>
+	   <div class="col-lg-6  text-center" >
+				<button id="enviar" class="btn btn-info btn-sm" ng-click="Historico($event)" id="btn-chat">
+                                        Histórico
+                                    </button>
+				
+		        </div>
+				<div class="col-lg-3"  >
+		</div>
+				</div>
+				
+	   			<div class="row">
+				<div class="col-lg-3"  >
+		</div>
+				<div class="col-lg-6" id= "historico" hidden = "true"  >
+				<div class="list-group" ng-repeat="dia in eventos.Historico | orderBy:'Orden'">
+				<a href="{{dia.Link}}" class="list-group-item" target="_blank" >
+                                    <i class="fa  fa-comment-o fa-fw"></i> {{dia.Resumen}}
+                                    <span class="pull-right text-muted small"><em>{{dia.Fecha}}</em>
+                                    </span>
+                                </a>
+				</div>
+		        </div>
+				<div class="col-lg-3"  >
+		</div>
+				</div>
 			<div class="row">
 			 <h3>Equipos</h3>
         <div class="table-responsive">

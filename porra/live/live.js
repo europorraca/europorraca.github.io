@@ -18,34 +18,9 @@ $routeProvider.when('/live', {
         $scope.showModal = !$scope.showModal;
     };
 	
-	$.ajax({
-  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
-  url: 'http://api.football-data.org/v1/soccerseasons/424',
-  dataType: 'json',
-  type: 'GET',
-}).done(function(response) {
-  // do something with the response, e.g. isolate the id of a linked resource        
-  var regex = /.*?(\d+)$/; // the ? makes the first part non-greedy
-  $scope.partidoActual = response.currentMatchday;
-   
-}); 
 	
-	$.ajax({
-  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
-  url: 'http://api.football-data.org/v1/soccerseasons/424/fixtures',
-  dataType: 'json',
-  type: 'GET',
-}).done(function(response) {
-  // do something with the response, e.g. isolate the id of a linked resource        
-  
-   //$scope.golEncasa = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
-   //$scope.golFuera = response.fixtures[$scope.partidoActual-1].result.goalsAwayTeam;
-   $scope.golEncasa = 3;
-   $scope.golFuera = 1;
-   $scope.EquipoCasa = response.fixtures[$scope.partidoActual-1].homeTeamName
-   $scope.EquipoFuera = response.fixtures[$scope.partidoActual-1].awayTeamName
-  $scope.$apply(); 
-}); 
+	
+	
 
 
 		
