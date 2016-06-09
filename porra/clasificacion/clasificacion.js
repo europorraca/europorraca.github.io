@@ -19,41 +19,77 @@ $routeProvider.when('/clasificacion', {
 	}
 	if(user != null ){
 	//PARA EL LIVE	
-		
-			$.ajax({
-  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
-  url: 'http://api.football-data.org/v1/soccerseasons/424',
-  dataType: 'json',
-  type: 'GET',
-}).done(function(response) {
-  // do something with the response, e.g. isolate the id of a linked resource        
-  var regex = /.*?(\d+)$/; // the ? makes the first part non-greedy
-  $scope.partidoActual = response.currentMatchday;
-   
-}); 
 	
-	$.ajax({
-  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
-  url: 'http://api.football-data.org/v1/soccerseasons/424/fixtures',
-  dataType: 'json',
-  type: 'GET',
-}).done(function(response) {
-  // do something with the response, e.g. isolate the id of a linked resource        
-  if(response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam == null){
-	  $scope.golEncasa = 0;
-  }else{
-	  $scope.golEncasa = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
-  }
-   if(response.fixtures[$scope.partidoActual-1].result.goalsAwayTeam == null){
-	  $scope.golFuera = 0;
-  }else{
-	  $scope.golFuera = response.fixtures[$scope.partidoActual-1].result.goalsHomeTeam;
-  }
-   
-   $scope.EquipoCasa = response.fixtures[$scope.partidoActual-1].homeTeamName
-   $scope.EquipoFuera = response.fixtures[$scope.partidoActual-1].awayTeamName
-  $scope.$apply(); 
-}); 
+	
+		firebase.database().ref('Live/Partidos').once('value').then(function(snapshot) {
+			var partidos = snapshot.val();
+		    $scope.Partido1 = partidos.Partido1;
+			$scope.Partido2 = partidos.Partido2;
+			$scope.Partido3 = partidos.Partido3;
+			
+		 
+						 $.ajax({
+				  headers: { 'X-Auth-Token': 'dd0896404b00402fa3181ac867bce4d1' },
+				  url: 'http://api.football-data.org/v1/soccerseasons/424/fixtures',
+				  dataType: 'json',
+				  type: 'GET',
+				}).done(function(response) {
+					
+				  // do something with the response, e.g. isolate the id of a linked resource        
+				  if(response.fixtures[$scope.Partido1].result.goalsHomeTeam == null){
+					  $scope.golEncasa = 0;
+				  }else{
+					  $scope.golEncasa = response.fixtures[$scope.Partido1].result.goalsHomeTeam;
+				  }
+				   if(response.fixtures[$scope.Partido1].result.goalsAwayTeam == null){
+					  $scope.golFuera = 0;
+				  }else{
+					  $scope.golFuera = response.fixtures[$scope.Partido1].result.goalsHomeTeam;
+				  }
+				   
+				   $scope.EquipoCasa = response.fixtures[$scope.Partido1].homeTeamName
+				   $scope.EquipoFuera = response.fixtures[$scope.Partido1].awayTeamName
+				   
+				   // do something with the response, e.g. isolate the id of a linked resource        
+				  if(response.fixtures[$scope.Partido2].result.goalsHomeTeam == null){
+					  $scope.golEncasa1 = 0;
+				  }else{
+					  $scope.golEncasa1 = response.fixtures[$scope.Partido2].result.goalsHomeTeam;
+				  }
+				   if(response.fixtures[$scope.Partido2].result.goalsAwayTeam == null){
+					  $scope.golFuera1 = 0;
+				  }else{
+					  $scope.golFuera1 = response.fixtures[$scope.Partido2].result.goalsHomeTeam;
+				  }
+				   
+				   $scope.EquipoCasa1 = response.fixtures[$scope.Partido2].homeTeamName
+				   $scope.EquipoFuera1 = response.fixtures[$scope.Partido2].awayTeamName
+				   
+				   // do something with the response, e.g. isolate the id of a linked resource        
+				  if(response.fixtures[$scope.Partido3].result.goalsHomeTeam == null){
+					  $scope.golEncasa2 = 0;
+				  }else{
+					  $scope.golEncasa2 = response.fixtures[$scope.Partido3].result.goalsHomeTeam;
+				  }
+				   if(response.fixtures[$scope.Partido3].result.goalsAwayTeam == null){
+					  $scope.golFuera2 = 0;
+				  }else{
+					  $scope.golFuera2 = response.fixtures[$scope.Partido3].result.goalsHomeTeam;
+				  }
+				   
+				   $scope.EquipoCasa2 = response.fixtures[$scope.Partido3].homeTeamName
+				   $scope.EquipoFuera2 = response.fixtures[$scope.Partido3].awayTeamName
+				   
+				  $scope.$apply(); 
+				}); 		 
+		 
+		$scope.$apply();
+		});
+		
+		
+			
+	
+	
 
 	//PARA EL LIVE	
 	
@@ -114,8 +150,6 @@ $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));
     
     
 }
-
-
 
 
 }]);
