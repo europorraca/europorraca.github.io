@@ -44,9 +44,19 @@ $routeProvider.when('/clasificacion', {
 				   if(response.fixtures[$scope.Partido1].result.goalsAwayTeam == null){
 					  $scope.golFuera = 0;
 				  }else{
-					  $scope.golFuera = response.fixtures[$scope.Partido1].result.goalsHomeTeam;
+					  $scope.golFuera = response.fixtures[$scope.Partido1].result.goalsAwayTeam;
 				  }
-				   
+				   //Tiempo
+				   if (response.fixtures[$scope.Partido1].status == 'IN_PLAY'){
+					   $scope.Tiempo = "Jugando";					   
+				   }
+				   if (response.fixtures[$scope.Partido1].status == 'FINISHED'){
+					   $scope.Tiempo = "Acabado";					   
+				   }
+				   if (response.fixtures[$scope.Partido1].status == 'TIMED'){
+						var date = new Date(response.fixtures[$scope.Partido1].date);						
+					   $scope.Tiempo = date.getHours() +'h' ;					   
+				   }
 				   $scope.EquipoCasa = response.fixtures[$scope.Partido1].homeTeamName
 				   $scope.EquipoFuera = response.fixtures[$scope.Partido1].awayTeamName
 				   
@@ -59,9 +69,20 @@ $routeProvider.when('/clasificacion', {
 				   if(response.fixtures[$scope.Partido2].result.goalsAwayTeam == null){
 					  $scope.golFuera1 = 0;
 				  }else{
-					  $scope.golFuera1 = response.fixtures[$scope.Partido2].result.goalsHomeTeam;
+					  $scope.golFuera1 = response.fixtures[$scope.Partido2].result.goalsAwayTeam;
 				  }
-				   
+				    //Tiempo
+				   if (response.fixtures[$scope.Partido2].status == 'IN_PLAY'){
+					   $scope.Tiempo2 = "Jugando";					   
+				   }
+				   if (response.fixtures[$scope.Partido2].status == 'FINISHED'){
+					   $scope.Tiempo2 = "Acabado";					   
+				   }
+				   if (response.fixtures[$scope.Partido2].status == 'TIMED'){
+					   
+	                   var date = new Date(response.fixtures[$scope.Partido2].date);						
+					   $scope.Tiempo2 = date.getHours() +'h' ;					   					   
+				   }
 				   $scope.EquipoCasa1 = response.fixtures[$scope.Partido2].homeTeamName
 				   $scope.EquipoFuera1 = response.fixtures[$scope.Partido2].awayTeamName
 				   
@@ -74,9 +95,20 @@ $routeProvider.when('/clasificacion', {
 				   if(response.fixtures[$scope.Partido3].result.goalsAwayTeam == null){
 					  $scope.golFuera2 = 0;
 				  }else{
-					  $scope.golFuera2 = response.fixtures[$scope.Partido3].result.goalsHomeTeam;
+					  $scope.golFuera2 = response.fixtures[$scope.Partido3].result.goalsAwayTeam;
 				  }
-				   
+				    //Tiempo
+				   if (response.fixtures[$scope.Partido3].status == 'IN_PLAY'){
+					   $scope.Tiempo3 = "Jugando";					   
+				   }
+				   if (response.fixtures[$scope.Partido3].status == 'FINISHED'){
+					   $scope.Tiempo3 = "Acabado";					   
+				   }
+				   if (response.fixtures[$scope.Partido3].status == 'TIMED'){
+					   
+                       var date = new Date(response.fixtures[$scope.Partido3].date);						
+					   $scope.Tiempo3 = date.getHours() +'h' ;					   
+				   }
 				   $scope.EquipoCasa2 = response.fixtures[$scope.Partido3].homeTeamName
 				   $scope.EquipoFuera2 = response.fixtures[$scope.Partido3].awayTeamName
 				   
