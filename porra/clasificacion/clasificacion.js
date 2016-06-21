@@ -160,7 +160,30 @@ $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));
 	
 		
 	
-				
+	//PAra las rondas
+	
+	$scope.Rondas = {        
+        list: {"Jugadores": []   }
+    };
+	
+	firebase.database().ref('Rondas/Jugadores').once('value').then(function(snapshot) {
+		var usuarios = snapshot.val();
+		for(var usuario in usuarios){
+			$scope.Rondas.list.Jugadores.push({Nombre: usuarios[usuario].Nombre, 
+			Octavos1: usuarios[usuario].Octavos1.Casa + ' - ' + usuarios[usuario].Octavos1.Fuera,
+			Octavos2: usuarios[usuario].Octavos2.Casa + ' - ' + usuarios[usuario].Octavos2.Fuera,
+			Octavos3: usuarios[usuario].Octavos3.Casa + ' - ' + usuarios[usuario].Octavos3.Fuera,
+			Octavos4: usuarios[usuario].Octavos4.Casa + ' - ' + usuarios[usuario].Octavos4.Fuera,
+			Octavos5: usuarios[usuario].Octavos5.Casa + ' - ' + usuarios[usuario].Octavos5.Fuera,
+			Octavos6: usuarios[usuario].Octavos6.Casa + ' - ' + usuarios[usuario].Octavos6.Fuera,
+			Octavos7: usuarios[usuario].Octavos7.Casa + ' - ' + usuarios[usuario].Octavos7.Fuera,
+			Octavos8: usuarios[usuario].Octavos8.Casa + ' - ' + usuarios[usuario].Octavos8.Fuera,
+			Puntos: usuarios[usuario].Puntos});
+		}
+		 
+		$scope.$apply(); 
+	});
+/////////////////////	
 			
 	 
 	

@@ -248,6 +248,48 @@
 			</table>
  </div>
  </div>
+ 
+ 	<div class="row">
+			
+       <div class="table-responsive">
+	   
+	  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+				<thead>
+					<tr>
+					    <th>Posición</th>
+						<th>Nombre</th>
+						<th>Octavos 1</th>
+						<th>Octavos 2</th>
+						<th>Octavos 3</th>
+						<th>Octavos 4</th>
+						<th>Octavos 5 </th>
+						<th>Octavos 6 </th>
+						<th>Octavos 7 </th>
+						<th>Octavos 8 </th>
+						<th>Puntos</th>
+						
+					</tr>
+				</thead>
+				<tbody id="teamListTable">
+					<tr ng-repeat="usuario in Rondas.list.Jugadores | orderBy:'-Puntos' track by $index">
+					    <td>{{$index + 1}}</td>
+						<td>{{usuario.Nombre}}</td>
+						<td>{{usuario.Octavos1}}</td>
+						<td>{{usuario.Octavos2}}</td>
+						<td>{{usuario.Octavos3}}</td>
+						<td>{{usuario.Octavos4}}</td>
+						<td>{{usuario.Octavos5}}</td>
+						<td>{{usuario.Octavos6}}</td>
+						<td>{{usuario.Octavos7}}</td>
+						<td>{{usuario.Octavos8}}</td>
+						<td>{{usuario.Puntos}}</td>
+					</tr>
+				</tbody>
+			</table>
+ </div>
+ </div>
+ 
+ 
     </div>
 
   <script>

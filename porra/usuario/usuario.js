@@ -117,7 +117,7 @@ $routeProvider.when('/usuario', {
    });
    
    $scope.Guardar = function(event) {
-	   var signo = 0;
+		//Octavos 1
 		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Casa : $scope.Octavos1.Casa});
 		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Fuera : $scope.Octavos1.Fuera});
 		if ($scope.Octavos1.Fuera > $scope.Octavos1.Casa){
@@ -128,6 +128,97 @@ $routeProvider.when('/usuario', {
 		}
 		if ($scope.Octavos1.Fuera == $scope.Octavos1.Casa){
 			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Signo : 'X'});
+		}
+		
+		//Octavos 2
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos2').update({Casa : $scope.Octavos2.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos2').update({Fuera : $scope.Octavos2.Fuera});
+		if ($scope.Octavos2.Fuera > $scope.Octavos2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos2').update({Signo : 2});
+		}
+		if ($scope.Octavos2.Fuera < $scope.Octavos2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos2').update({Signo : 1});
+		}
+		if ($scope.Octavos2.Fuera == $scope.Octavos2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos2').update({Signo : 'X'});
+		}
+		
+		//Octavos 3
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos3').update({Casa : $scope.Octavos3.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos3').update({Fuera : $scope.Octavos3.Fuera});
+		if ($scope.Octavos3.Fuera > $scope.Octavos3.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos3').update({Signo : 2});
+		}
+		if ($scope.Octavos3.Fuera < $scope.Octavos3.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos3').update({Signo : 1});
+		}
+		if ($scope.Octavos3.Fuera == $scope.Octavos3.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos3').update({Signo : 'X'});
+		}
+		
+		//Octavos 4
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos4').update({Casa : $scope.Octavos4.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos4').update({Fuera : $scope.Octavos4.Fuera});
+		if ($scope.Octavos4.Fuera > $scope.Octavos4.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos4').update({Signo : 2});
+		}
+		if ($scope.Octavos4.Fuera < $scope.Octavos4.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos4').update({Signo : 1});
+		}
+		if ($scope.Octavos4.Fuera == $scope.Octavos4.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos4').update({Signo : 'X'});
+		}
+		
+		//Octavos 5
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos5').update({Casa : $scope.Octavos5.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos5').update({Fuera : $scope.Octavos5.Fuera});
+		if ($scope.Octavos5.Fuera > $scope.Octavos5.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos5').update({Signo : 2});
+		}
+		if ($scope.Octavos5.Fuera < $scope.Octavos5.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos5').update({Signo : 1});
+		}
+		if ($scope.Octavos5.Fuera == $scope.Octavos5.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos5').update({Signo : 'X'});
+		}
+		
+		//Octavos 6
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos6').update({Casa : $scope.Octavos6.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos6').update({Fuera : $scope.Octavos6.Fuera});
+		if ($scope.Octavos6.Fuera > $scope.Octavos6.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos6').update({Signo : 2});
+		}
+		if ($scope.Octavos6.Fuera < $scope.Octavos6.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos6').update({Signo : 1});
+		}
+		if ($scope.Octavos6.Fuera == $scope.Octavos6.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos6').update({Signo : 'X'});
+		}
+		
+		//Octavos 7
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos7').update({Casa : $scope.Octavos7.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos7').update({Fuera : $scope.Octavos7.Fuera});
+		if ($scope.Octavos7.Fuera > $scope.Octavos7.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos7').update({Signo : 2});
+		}
+		if ($scope.Octavos7.Fuera < $scope.Octavos7.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos7').update({Signo : 1});
+		}
+		if ($scope.Octavos7.Fuera == $scope.Octavos7.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos7').update({Signo : 'X'});
+		}
+		
+		//Octavos 8
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos8').update({Casa : $scope.Octavos8.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos8').update({Fuera : $scope.Octavos8.Fuera});
+		if ($scope.Octavos8.Fuera > $scope.Octavos8.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos8').update({Signo : 2});
+		}
+		if ($scope.Octavos8.Fuera < $scope.Octavos8.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos8').update({Signo : 1});
+		}
+		if ($scope.Octavos8.Fuera == $scope.Octavos8.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos8').update({Signo : 'X'});
 		}
 	}
 	/////////////////
