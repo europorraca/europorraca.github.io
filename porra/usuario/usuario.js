@@ -24,6 +24,11 @@ $routeProvider.when('/usuario', {
 		alert("Usario incorrecto por favor vuelve a loginarte")
 	}
 
+	
+	
+	
+	
+	
 //Para seleccionar
  $scope.dropdown = {  
 		jugadorSelect: null, 
@@ -69,7 +74,63 @@ $routeProvider.when('/usuario', {
 	 
    });
 
+   //Para Las rondas
+   //Iniciamos
+	   $scope.Octavos1 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos2 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos3 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos4 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos5 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos6 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos7 = {Fuera : null,  Casa: null  };
+	   $scope.Octavos8 = {Fuera : null,  Casa: null  };
+   
 	
+     firebase.database().ref('Rondas/Jugadores/' +  user).once('value').then(function(snapshot) {
+	 var rondas = snapshot.val();
+	 
+	  $scope.Octavos1.Fuera = rondas.Octavos1.Fuera;
+	  $scope.Octavos1.Casa = rondas.Octavos1.Casa;
+	  
+	  $scope.Octavos2.Fuera = rondas.Octavos2.Fuera;
+	  $scope.Octavos2.Casa = rondas.Octavos2.Casa;
+	  
+	  $scope.Octavos3.Fuera = rondas.Octavos3.Fuera;
+	  $scope.Octavos3.Casa =  rondas.Octavos3.Casa;
+	  
+	  $scope.Octavos4.Fuera = rondas.Octavos4.Fuera;
+	  $scope.Octavos4.Casa = rondas.Octavos4.Casa;
+	  
+	  $scope.Octavos5.Fuera = rondas.Octavos5.Fuera;
+	  $scope.Octavos5.Casa = rondas.Octavos5.Casa;
+	  
+	  $scope.Octavos6.Fuera = rondas.Octavos6.Fuera;
+	  $scope.Octavos6.Casa = rondas.Octavos6.Casa;
+	  
+	  $scope.Octavos7.Fuera = rondas.Octavos7.Fuera;
+	  $scope.Octavos7.Casa = rondas.Octavos7.Casa;
+	  
+	  $scope.Octavos8.Fuera = rondas.Octavos8.Fuera;
+	  $scope.Octavos8.Casa = rondas.Octavos8.Casa;
+      $scope.$apply(); 
+	 
+   });
+   
+   $scope.Guardar = function(event) {
+	   var signo = 0;
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Casa : $scope.Octavos1.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Fuera : $scope.Octavos1.Fuera});
+		if ($scope.Octavos1.Fuera > $scope.Octavos1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Signo : 2});
+		}
+		if ($scope.Octavos1.Fuera < $scope.Octavos1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Signo : 1});
+		}
+		if ($scope.Octavos1.Fuera == $scope.Octavos1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Signo : 'X'});
+		}
+	}
+	/////////////////
 	firebase.database().ref('Europorraquers/' +  user).once('value').then(function(snapshot) {
 		 var usuario = snapshot.val();
 		 var Creditos1 = 0;
@@ -158,8 +219,12 @@ $routeProvider.when('/usuario', {
        $scope.CreditosTotales = 35 - Total;
     }, true);
 
+	
+	
+		
+	
    	//Para guardar	 
- $scope.Guardar = function(event) {
+ $scope.Guardar2 = function(event) {
     event.preventDefault();  // To prevent form refresh
 	if($scope.models.lists.Seleccionados.length >4){
 		alert('Has seleccionado mas de 4 equipos!');
