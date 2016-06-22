@@ -26,6 +26,7 @@ $routeProvider.when('/clasificacion', {
 		    $scope.Partido1 = partidos.Partido1;
 			$scope.Partido2 = partidos.Partido2;
 			$scope.Partido3 = partidos.Partido3;
+			$scope.Partido4 = partidos.Partido4;
 			
 		 
 						 $.ajax({
@@ -111,6 +112,31 @@ $routeProvider.when('/clasificacion', {
 				   }
 				   $scope.EquipoCasa2 = response.fixtures[$scope.Partido3].homeTeamName
 				   $scope.EquipoFuera2 = response.fixtures[$scope.Partido3].awayTeamName
+				   
+				    // do something with the response, e.g. isolate the id of a linked resource        
+				  if(response.fixtures[$scope.Partido4].result.goalsHomeTeam == null){
+					  $scope.golEncasa3 = 0;
+				  }else{
+					  $scope.golEncasa3 = response.fixtures[$scope.Partido1].result.goalsHomeTeam;
+				  }
+				   if(response.fixtures[$scope.Partido4].result.goalsAwayTeam == null){
+					  $scope.golFuera3 = 0;
+				  }else{
+					  $scope.golFuera3 = response.fixtures[$scope.Partido4].result.goalsAwayTeam;
+				  }
+				   //Tiempo
+				   if (response.fixtures[$scope.Partido4].status == 'IN_PLAY'){
+					   $scope.Tiempo4 = "Jugando";					   
+				   }
+				   if (response.fixtures[$scope.Partido4].status == 'FINISHED'){
+					   $scope.Tiempo4 = "Acabado";					   
+				   }
+				   if (response.fixtures[$scope.Partido4].status == 'TIMED'){
+						var date = new Date(response.fixtures[$scope.Partido4].date);						
+					   $scope.Tiempo4 = date.getHours() +'h' ;					   
+				   }
+				   $scope.EquipoCasa3 = response.fixtures[$scope.Partido4].homeTeamName
+				   $scope.EquipoFuera3 = response.fixtures[$scope.Partido4].awayTeamName
 				   
 				  $scope.$apply(); 
 				}); 		 
