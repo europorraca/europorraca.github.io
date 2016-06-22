@@ -117,7 +117,7 @@ $routeProvider.when('/clasificacion', {
 				  if(response.fixtures[$scope.Partido4].result.goalsHomeTeam == null){
 					  $scope.golEncasa3 = 0;
 				  }else{
-					  $scope.golEncasa3 = response.fixtures[$scope.Partido1].result.goalsHomeTeam;
+					  $scope.golEncasa3 = response.fixtures[$scope.Partido4].result.goalsHomeTeam;
 				  }
 				   if(response.fixtures[$scope.Partido4].result.goalsAwayTeam == null){
 					  $scope.golFuera3 = 0;
