@@ -27,6 +27,8 @@ $routeProvider.when('/clasificacion', {
 			$scope.Partido2 = partidos.Partido2;
 			$scope.Partido3 = partidos.Partido3;
 			$scope.Partido4 = partidos.Partido4;
+			$scope.Partido5 = partidos.Partido5;
+			$scope.Partido6 = partidos.Partido6;
 			
 		 
 						 $.ajax({
@@ -138,6 +140,64 @@ $routeProvider.when('/clasificacion', {
 				   $scope.EquipoCasa3 = response.fixtures[$scope.Partido4].homeTeamName
 				   $scope.EquipoFuera3 = response.fixtures[$scope.Partido4].awayTeamName
 				   
+				   
+				   // do something with the response, e.g. isolate the id of a linked resource        
+				  if(response.fixtures[$scope.Partido5].result.goalsHomeTeam == null){
+					  $scope.golEncasa4 = 0;
+				  }else{
+					  $scope.golEncasa4 = response.fixtures[$scope.Partido5].result.goalsHomeTeam;
+				  }
+				   if(response.fixtures[$scope.Partido5].result.goalsAwayTeam == null){
+					  $scope.golFuera4 = 0;
+				  }else{
+					  $scope.golFuera4 = response.fixtures[$scope.Partido5].result.goalsAwayTeam;
+				  }
+				   //Tiempo
+				   if (response.fixtures[$scope.Partido5].status == 'IN_PLAY'){
+					   $scope.Tiempo5 = "Jugando";					   
+				   }
+				   if (response.fixtures[$scope.Partido5].status == 'FINISHED'){
+					   $scope.Tiempo5 = "Acabado";					   
+				   }
+				   if (response.fixtures[$scope.Partido5].status == 'TIMED'){
+						var date = new Date(response.fixtures[$scope.Partido5].date);						
+					   $scope.Tiempo5 = date.getHours() +'h' ;					   
+				   }
+				   $scope.EquipoCasa4 = response.fixtures[$scope.Partido5].homeTeamName;
+				   $scope.EquipoFuera4 = response.fixtures[$scope.Partido5].awayTeamName;
+				   
+				   
+				    // do something with the response, e.g. isolate the id of a linked resource        
+				  if(response.fixtures[$scope.Partido6].result.goalsHomeTeam == null){
+					  $scope.golEncasa5 = 0;
+				  }else{
+					  $scope.golEncasa5 = response.fixtures[$scope.Partido6].result.goalsHomeTeam;
+				  }
+				   if(response.fixtures[$scope.Partido6].result.goalsAwayTeam == null){
+					  $scope.golFuera5 = 0;
+				  }else{
+					  $scope.golFuera5 = response.fixtures[$scope.Partido6].result.goalsAwayTeam;
+				  }
+				   //Tiempo
+				   if (response.fixtures[$scope.Partido6].status == 'IN_PLAY'){
+					   $scope.Tiempo6 = "Jugando";					   
+				   }
+				   if (response.fixtures[$scope.Partido6].status == 'FINISHED'){
+					   $scope.Tiempo6 = "Acabado";					   
+				   }
+				   if (response.fixtures[$scope.Partido6].status == 'TIMED'){
+						var date = new Date(response.fixtures[$scope.Partido6].date);						
+					   $scope.Tiempo6 = date.getHours() +'h' ;					   
+				   }
+				   $scope.EquipoCasa5 = response.fixtures[$scope.Partido6].homeTeamName
+				   $scope.EquipoFuera5 = response.fixtures[$scope.Partido6].awayTeamName
+				   
+				   
+				   
+				   
+				   
+				   
+				   
 				  $scope.$apply(); 
 				}); 		 
 		 
@@ -165,8 +225,19 @@ $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));
         list: {"Juagadores": []   }
     };
 	
-	
-	
+	$scope.Equipos = {        
+        list: {"Equipos": []   }
+    };
+	 
+	 firebase.database().ref('Equipos').once('value').then(function(snapshot) {
+		 var equipos = snapshot.val();
+		for(var equipo in equipos){
+			$scope.Equipos.list.Equipos.push({Nombre: equipos[equipo].Nombre, 
+			Eliminado: equipos[equipo].Eliminado});
+		}
+		 
+		$scope.$apply(); 
+	 });
 	
 
     firebase.database().ref('Europorraquers').once('value').then(function(snapshot) {
@@ -177,6 +248,10 @@ $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));
 			Equipo2: usuarios[usuario].Equipo2,
 			Equipo3: usuarios[usuario].Equipo3,
 			Equipo4: usuarios[usuario].Equipo4,
+			Equipo1Eliminado: objectFindByKeyValue($scope.Equipos.list.Equipos,'Nombre',usuarios[usuario].Equipo1),
+			Equipo2Eliminado: objectFindByKeyValue($scope.Equipos.list.Equipos,'Nombre',usuarios[usuario].Equipo2),
+			Equipo3Eliminado: objectFindByKeyValue($scope.Equipos.list.Equipos,'Nombre',usuarios[usuario].Equipo3),
+			Equipo4Eliminado: objectFindByKeyValue($scope.Equipos.list.Equipos,'Nombre',usuarios[usuario].Equipo4),
 			Jugador: usuarios[usuario].Jugador,
 			Puntos: usuarios[usuario].Puntos});
 		}
@@ -240,4 +315,14 @@ function writeUserData(userId, nombre, frase) {
     Nombre: nombre,
     Frase: frase
   });
+}
+
+
+function objectFindByKeyValue(array, key, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i][key] === value) {
+            return array[i]['Eliminado'];
+        }
+    }
+    return 'N';
 }
