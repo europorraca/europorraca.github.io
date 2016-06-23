@@ -11,6 +11,7 @@
     
  
     <link href="justified-nav.css" rel="stylesheet">
+	 <link href="./live/sb-admin.css" rel="stylesheet">
  
     <link href="../bootstrap/css/clean-blog.min.css" rel="stylesheet">
 
@@ -355,13 +356,13 @@
 		</div>
 			
 		
-		<!--
+		
 	   <div class="row">
 	   <div class="col-lg-3"  >
 		</div>
 	   <div class="col-lg-6  text-center" >
 				<button id="enviar" class="btn btn-info btn-sm" ng-click="Ayer($event)" id="btn-chat">
-                                      Gol de Pique
+                                      Chat
                                     </button>
 				
 		        </div>
@@ -373,12 +374,47 @@
 				<div class="col-lg-3"  >
 		</div>
 				<div class="col-lg-6" id= "ayer" hidden = "true"  >
-				<div id="player"></div>
+				 <div class="chat-panel panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-comments fa-fw"></i>
+                            Chat                           
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="chat">
+							<li class="left clearfix" ng-repeat="frase in chatCompleto.list.Frases">
+							<span class="chat-img pull-left">
+                                        <img ng-src="{{frase.Avatar}}" height="40" width="40" alt="Avatar" class="img-circle" />
+                                    </span>	
+									<p>
+							        {{frase.Frase}} 
+								   </p>									
+							</li>
+                               
+                                
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="fraseActual"  ng-keypress="GuardarTecla($event)"  type="text" class="form-control input-sm" placeholder="Escribe aqui tu mensaje" />
+                                <span class="input-group-btn">
+                                    <button id="enviar" class="btn btn-warning btn-sm" ng-click="GuardarCompleto($event)" id="btn-chat">
+                                        Enviar
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.panel-footer -->
+                    </div>
 		        </div>
 				<div class="col-lg-3"  >
 		</div>
 				</div>
-	   -->
+	   
+	   
+	   
+	   
 			<div class="row">
 			
        <div class="table-responsive">
@@ -464,7 +500,7 @@
  </div>
  </div>
  
- 
+
     </div>
 
   <script>

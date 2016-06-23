@@ -71,20 +71,7 @@ $routeProvider.when('/live', {
    });
    
   
-	//firebase.database().ref('Live/ChatCompleto').once('value').then(function(snapshot) {
-	// var frases = snapshot.val();
-	// var frase = new Object();
-	// for(frase in frases){
-		
-	//	$scope.chatCompleto.list.Frases.push({Frase: frases[frase].Frase, Avatar: frases[frase].Avatar});	
-		
-		 
-		 
-	// }
-	 
-    // $scope.$apply(); 
-	 
-   //});
+
 					
 			
 	 
@@ -140,57 +127,11 @@ $routeProvider.when('/live', {
     
     
 }
-////////////simple
-	 
- $scope.Guardar = function(event) {
-    event.preventDefault();  // To prevent form refresh
-	
-  
-	
-	var frase1;
-	var frase2;
-	var frase3;
-	var frase4;
-	var frase5;
-	
-	frase1 = $scope.chat.list.Frases[1].Frase;
-	frase2 = $scope.chat.list.Frases[2].Frase;
-	frase3 = $scope.chat.list.Frases[3].Frase;
-	frase4 = $scope.chat.list.Frases[4].Frase;
-	frase5 = $scope.Usuario + ' : ' + $scope.Actual;
-	writeUserData(frase1,frase2,frase3,frase4,frase5,$scope);
-    
-    
-}
+
 
 }]);
 
-function writeUserData(frase1,frase2,frase3,frase4,frase5,$scope) {
-  firebase.database().ref('Live/Chat').set({
-    Frase1: frase1,
-    Frase2: frase2,
-	Frase3: frase3,
-    Frase4: frase4,
-	Frase5: frase5	
-    
-  });
-  firebase.database().ref('Live/Chat').once('value').then(function(snapshot) {
-	 var frases = snapshot.val();
-	 var frase = new Object();
-	 $scope.chat = {        
-        list: {"Frases": []   }
-    };
-	$scope.Actual = "";
-	 for(frase in frases){		
-		$scope.chat.list.Frases.push({Frase: frases[frase]});	
-			 
-		 
-	 }
-	 
-     $scope.$apply(); 
-	 
-   });
-}
+
 
 ///////////COMPLETO
 function writeUserDataCompleto(frase1,frase2,frase3,frase4,frase5,frase6,frase7,frase8,$scope) {
