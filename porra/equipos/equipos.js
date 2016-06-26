@@ -99,81 +99,159 @@ $scope.GuardarRondas = function(event) {
 		    aCruce[key] = $scope.rondas[key];           			
 			aCruce[key].Casa = $scope.rondas[key].Casa ;
 			aCruce[key].Fuera = $scope.rondas[key].Fuera;
-			if ($scope.rondas[key].Fuera > $scope.rondas[key].Casa){
-				aCruce[key].Signo = 2;
+			if($scope.rondas[key].Signo != 'N'){
+				if ($scope.rondas[key].Fuera > $scope.rondas[key].Casa){
+					aCruce[key].Signo = 2;
+				}
+				if ($scope.rondas[key].Fuera < $scope.rondas[key].Casa){
+					aCruce[key].Signo = 1;
+				}
+				if ($scope.rondas[key].Fuera == $scope.rondas[key].Casa){
+					aCruce[key].Signo = 'X';
+				}	
 			}
-			if ($scope.rondas[key].Fuera < $scope.rondas[key].Casa){
-				aCruce[key].Signo = 1;
-			}
-			if ($scope.rondas[key].Fuera == $scope.rondas[key].Casa){
-				aCruce[key].Signo = 'X';
-			}
+			
 	});	
 	//Guardamos los puntos de cada jugador
 	$scope.jugadoresRondas.forEach(function(value,key) {
 	    JugadoresRondas[key] = $scope.jugadoresRondas[key]; 
 	   var Puntos = 0
 	   //Puntos Octavos 1
-	   if ($scope.rondas["Octavos1"].Casa == JugadoresRondas[key].Octavos1.Casa && $scope.rondas["Octavos1"].Fuera == JugadoresRondas[key].Octavos1.Fuera){
-		   Puntos = Puntos + 10;
-	   }
-	   if ($scope.rondas["Octavos1"].Signo == JugadoresRondas[key].Octavos1.Signo){
-		   Puntos = Puntos + 4;
+	   if ($scope.rondas["Octavos1"].Signo != 'N'){	  
+		   if ($scope.rondas["Octavos1"].Casa == JugadoresRondas[key].Octavos1.Casa && $scope.rondas["Octavos1"].Fuera == JugadoresRondas[key].Octavos1.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos1"].Signo == JugadoresRondas[key].Octavos1.Signo){
+			   if($scope.rondas["Octavos1"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos1"].Signo == $scope.rondas["Octavos1"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos1"].Signo != $scope.rondas["Octavos1"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
 	   }
 	   //Puntos Octavos 2
-	    if ($scope.rondas["Octavos2"].Casa == JugadoresRondas[key].Octavos2.Casa && $scope.rondas["Octavos2"].Fuera == JugadoresRondas[key].Octavos2.Fuera){
-		   Puntos = Puntos + 10;
-	   }
-	   if ($scope.rondas["Octavos2"].Signo == JugadoresRondas[key].Octavos2.Signo){
-		   Puntos = Puntos + 4;
+	   if ($scope.rondas["Octavos2"].Signo != 'N'){		   
+		   if ($scope.rondas["Octavos2"].Casa == JugadoresRondas[key].Octavos2.Casa && $scope.rondas["Octavos2"].Fuera == JugadoresRondas[key].Octavos2.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos2"].Signo == JugadoresRondas[key].Octavos2.Signo){
+			  if($scope.rondas["Octavos2"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos2"].Signo == $scope.rondas["Octavos2"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos2"].Signo != $scope.rondas["Octavos2"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
 	   }
 	   //Puntos Octavos 3
-	    if ($scope.rondas["Octavos3"].Casa == JugadoresRondas[key].Octavos3.Casa && $scope.rondas["Octavos3"].Fuera == JugadoresRondas[key].Octavos3.Fuera){
-		   Puntos = Puntos + 10;
-	   }
-	   if ($scope.rondas["Octavos3"].Signo == JugadoresRondas[key].Octavos3.Signo){
-		   Puntos = Puntos + 4;
+	   if ($scope.rondas["Octavos3"].Signo != 'N'){	
+		   if ($scope.rondas["Octavos3"].Casa == JugadoresRondas[key].Octavos3.Casa && $scope.rondas["Octavos3"].Fuera == JugadoresRondas[key].Octavos3.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos3"].Signo == JugadoresRondas[key].Octavos3.Signo){
+			   if($scope.rondas["Octavos3"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos3"].Signo == $scope.rondas["Octavos3"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos3"].Signo != $scope.rondas["Octavos3"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
 	   }
 	   //Puntos Octavos 4
-	    if ($scope.rondas["Octavos4"].Casa == JugadoresRondas[key].Octavos4.Casa && $scope.rondas["Octavos4"].Fuera == JugadoresRondas[key].Octavos4.Fuera){
-		   Puntos = Puntos + 10;
+	   if ($scope.rondas["Octavos4"].Signo != 'N'){			   		   
+			if ($scope.rondas["Octavos4"].Casa == JugadoresRondas[key].Octavos4.Casa && $scope.rondas["Octavos4"].Fuera == JugadoresRondas[key].Octavos4.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos4"].Signo == JugadoresRondas[key].Octavos4.Signo){
+			   if($scope.rondas["Octavos4"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos4"].Signo == $scope.rondas["Octavos4"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos4"].Signo != $scope.rondas["Octavos4"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
 	   }
-	   if ($scope.rondas["Octavos4"].Signo == JugadoresRondas[key].Octavos4.Signo){
-		   Puntos = Puntos + 4;
-	   }
-	   
 	   //Puntos Octavos 5
-	    if ($scope.rondas["Octavos5"].Casa == JugadoresRondas[key].Octavos5.Casa && $scope.rondas["Octavos5"].Fuera == JugadoresRondas[key].Octavos5.Fuera){
-		   Puntos = Puntos + 10;
+	   if ($scope.rondas["Octavos5"].Signo != 'N'){			     
+			if ($scope.rondas["Octavos5"].Casa == JugadoresRondas[key].Octavos5.Casa && $scope.rondas["Octavos5"].Fuera == JugadoresRondas[key].Octavos5.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos5"].Signo == JugadoresRondas[key].Octavos5.Signo){
+			   if($scope.rondas["Octavos5"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos5"].Signo == $scope.rondas["Octavos5"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos5"].Signo != $scope.rondas["Octavos5"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
 	   }
-	   if ($scope.rondas["Octavos5"].Signo == JugadoresRondas[key].Octavos5.Signo){
-		   Puntos = Puntos + 4;
-	   }
-	   
 	   //Puntos Octavos 6
-	    if ($scope.rondas["Octavos6"].Casa == JugadoresRondas[key].Octavos6.Casa && $scope.rondas["Octavos6"].Fuera == JugadoresRondas[key].Octavos6.Fuera){
-		   Puntos = Puntos + 10;
-	   }
-	   if ($scope.rondas["Octavos6"].Signo == JugadoresRondas[key].Octavos6.Signo){
-		   Puntos = Puntos + 4;
-	   }
-	   
+	   if ($scope.rondas["Octavos6"].Signo != 'N'){	   
+		   if ($scope.rondas["Octavos6"].Casa == JugadoresRondas[key].Octavos6.Casa && $scope.rondas["Octavos6"].Fuera == JugadoresRondas[key].Octavos6.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos6"].Signo == JugadoresRondas[key].Octavos6.Signo){
+			   if($scope.rondas["Octavos6"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos6"].Signo == $scope.rondas["Octavos6"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos6"].Signo != $scope.rondas["Octavos6"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
+		}	   
 	   //Puntos Octavos 7
-	    if ($scope.rondas["Octavos7"].Casa == JugadoresRondas[key].Octavos7.Casa && $scope.rondas["Octavos7"].Fuera == JugadoresRondas[key].Octavos7.Fuera){
-		   Puntos = Puntos + 10;
+	   if ($scope.rondas["Octavos7"].Signo != 'N'){
+			if ($scope.rondas["Octavos7"].Casa == JugadoresRondas[key].Octavos7.Casa && $scope.rondas["Octavos7"].Fuera == JugadoresRondas[key].Octavos7.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos7"].Signo == JugadoresRondas[key].Octavos7.Signo){
+			   if($scope.rondas["Octavos7"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos7"].Signo == $scope.rondas["Octavos7"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos7"].Signo != $scope.rondas["Octavos7"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
 	   }
-	   if ($scope.rondas["Octavos7"].Signo == JugadoresRondas[key].Octavos7.Signo){
-		   Puntos = Puntos + 4;
 	   }
-	   
 	   //Puntos Octavos 8
-	    if ($scope.rondas["Octavos8"].Casa == JugadoresRondas[key].Octavos8.Casa && $scope.rondas["Octavos8"].Fuera == JugadoresRondas[key].Octavos8.Fuera){
-		   Puntos = Puntos + 10;
+	   if ($scope.rondas["Octavos7"].Signo != 'N'){			   
+			if ($scope.rondas["Octavos8"].Casa == JugadoresRondas[key].Octavos8.Casa && $scope.rondas["Octavos8"].Fuera == JugadoresRondas[key].Octavos8.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Octavos8"].Signo == JugadoresRondas[key].Octavos8.Signo){
+			  if($scope.rondas["Octavos8"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Octavos8"].Signo == $scope.rondas["Octavos8"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Octavos8"].Signo != $scope.rondas["Octavos8"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
 	   }
-	   if ($scope.rondas["Octavos8"].Signo == JugadoresRondas[key].Octavos8.Signo){
-		   Puntos = Puntos + 4;
-	   }
-	   
 	   JugadoresRondas[key].Puntos = Puntos;
 	   
 	   
