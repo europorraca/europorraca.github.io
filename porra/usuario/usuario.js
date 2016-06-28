@@ -84,6 +84,10 @@ $routeProvider.when('/usuario', {
 	   $scope.Octavos6 = {Fuera : null,  Casa: null  };
 	   $scope.Octavos7 = {Fuera : null,  Casa: null  };
 	   $scope.Octavos8 = {Fuera : null,  Casa: null  };
+	   $scope.Cuartos1 = {Fuera : null,  Casa: null  };
+	   $scope.Cuartos2 = {Fuera : null,  Casa: null  };
+	   $scope.Cuartos3 = {Fuera : null,  Casa: null  };
+	   $scope.Cuartos4 = {Fuera : null,  Casa: null  };
    
 	
      firebase.database().ref('Rondas/Jugadores/' +  user).once('value').then(function(snapshot) {
@@ -112,11 +116,75 @@ $routeProvider.when('/usuario', {
 	  
 	  $scope.Octavos8.Fuera = rondas.Octavos8.Fuera;
 	  $scope.Octavos8.Casa = rondas.Octavos8.Casa;
+	  
+	   $scope.Cuartos1.Fuera = rondas.Cuartos1.Fuera;
+	  $scope.Cuartos1.Casa = rondas.Cuartos1.Casa;
+	  
+	   $scope.Cuartos2.Fuera = rondas.Cuartos2.Fuera;
+	  $scope.Cuartos2.Casa = rondas.Cuartos2.Casa;
+	  
+	   $scope.Cuartos3.Fuera = rondas.Cuartos3.Fuera;
+	  $scope.Cuartos3.Casa = rondas.Cuartos3.Casa;
+	  
+	   $scope.Cuartos4.Fuera = rondas.Cuartos4.Fuera;
+	  $scope.Cuartos4.Casa = rondas.Cuartos4.Casa;
       $scope.$apply(); 
 	 
    });
-   
    $scope.Guardar = function(event) {
+	   //Cuartos 1
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Casa : $scope.Cuartos1.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Fuera : $scope.Cuartos1.Fuera});
+		if ($scope.Cuartos1.Fuera > $scope.Cuartos1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Signo : 2});
+		}
+		if ($scope.Cuartos1.Fuera < $scope.Cuartos1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Signo : 1});
+		}
+		if ($scope.Cuartos1.Fuera == $scope.Cuartos1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Signo : 'X'});
+		}
+		
+		//Cuartos 2
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos2').update({Casa : $scope.Cuartos2.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos2').update({Fuera : $scope.Cuartos2.Fuera});
+		if ($scope.Cuartos2.Fuera > $scope.Cuartos2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos2').update({Signo : 2});
+		}
+		if ($scope.Cuartos2.Fuera < $scope.Cuartos2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos2').update({Signo : 1});
+		}
+		if ($scope.Cuartos2.Fuera == $scope.Cuartos2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos2').update({Signo : 'X'});
+		}
+		
+		//Cuartos 3
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos3').update({Casa : $scope.Cuartos3.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos3').update({Fuera : $scope.Cuartos3.Fuera});
+		if ($scope.Cuartos3.Fuera > $scope.Cuartos3.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos3').update({Signo : 2});
+		}
+		if ($scope.Cuartos3.Fuera < $scope.Cuartos3.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos3').update({Signo : 1});
+		}
+		if ($scope.Cuartos3.Fuera == $scope.Cuartos3.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos3').update({Signo : 'X'});
+		}
+		
+		//Cuartos 4
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos4').update({Casa : $scope.Cuartos4.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos4').update({Fuera : $scope.Cuartos4.Fuera});
+		if ($scope.Cuartos4.Fuera > $scope.Cuartos4.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos4').update({Signo : 2});
+		}
+		if ($scope.Cuartos4.Fuera < $scope.Cuartos4.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos4').update({Signo : 1});
+		}
+		if ($scope.Cuartos4.Fuera == $scope.Cuartos4.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos4').update({Signo : 'X'});
+		}
+   }
+   $scope.GuardarOctavos = function(event) {
 		//Octavos 1
 		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Casa : $scope.Octavos1.Casa});
 		firebase.database().ref('Rondas/Jugadores/' +  user + '/Octavos1').update({Fuera : $scope.Octavos1.Fuera});

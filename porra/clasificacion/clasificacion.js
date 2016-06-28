@@ -279,6 +279,10 @@ $scope.eventos = $firebaseObject(firebaseObj.child('Eventos'));
 			Octavos6: usuarios[usuario].Octavos6.Casa + ' - ' + usuarios[usuario].Octavos6.Fuera,
 			Octavos7: usuarios[usuario].Octavos7.Casa + ' - ' + usuarios[usuario].Octavos7.Fuera,
 			Octavos8: usuarios[usuario].Octavos8.Casa + ' - ' + usuarios[usuario].Octavos8.Fuera,
+			Cuartos1: usuarios[usuario].Cuartos1.Casa + ' - ' + usuarios[usuario].Cuartos1.Fuera,
+			Cuartos2: usuarios[usuario].Cuartos2.Casa + ' - ' + usuarios[usuario].Cuartos2.Fuera,
+			Cuartos3: usuarios[usuario].Cuartos3.Casa + ' - ' + usuarios[usuario].Cuartos3.Fuera,
+			Cuartos4: usuarios[usuario].Cuartos4.Casa + ' - ' + usuarios[usuario].Cuartos4.Fuera,
 			Puntos: usuarios[usuario].Puntos});
 		}
 		 

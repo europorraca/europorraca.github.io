@@ -236,7 +236,7 @@ $scope.GuardarRondas = function(event) {
 	   }
 	   }
 	   //Puntos Octavos 8
-	   if ($scope.rondas["Octavos7"].Signo != 'N'){			   
+	   if ($scope.rondas["Octavos8"].Signo != 'N'){			   
 			if ($scope.rondas["Octavos8"].Casa == JugadoresRondas[key].Octavos8.Casa && $scope.rondas["Octavos8"].Fuera == JugadoresRondas[key].Octavos8.Fuera){
 			   Puntos = Puntos + 10;
 		   }
