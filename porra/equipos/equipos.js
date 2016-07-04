@@ -252,6 +252,77 @@ $scope.GuardarRondas = function(event) {
 			   }
 		   }
 	   }
+	   //Puntos Cuartos 1
+	   if ($scope.rondas["Cuartos1"].Signo != 'N'){			   
+			if ($scope.rondas["Cuartos1"].Casa == JugadoresRondas[key].Cuartos1.Casa && $scope.rondas["Cuartos1"].Fuera == JugadoresRondas[key].Cuartos1.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Cuartos1"].Signo == JugadoresRondas[key].Cuartos1.Signo){
+			  if($scope.rondas["Cuartos1"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Cuartos1"].Signo == $scope.rondas["Cuartos1"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Cuartos1"].Signo != $scope.rondas["Cuartos1"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
+	   }
+	   
+	   //Puntos Cuartos 2
+	   if ($scope.rondas["Cuartos2"].Signo != 'N'){			   
+			if ($scope.rondas["Cuartos2"].Casa == JugadoresRondas[key].Cuartos2.Casa && $scope.rondas["Cuartos2"].Fuera == JugadoresRondas[key].Cuartos2.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Cuartos2"].Signo == JugadoresRondas[key].Cuartos2.Signo){
+			  if($scope.rondas["Cuartos2"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Cuartos2"].Signo == $scope.rondas["Cuartos2"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Cuartos2"].Signo != $scope.rondas["Cuartos2"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
+	   }
+	   
+	   //Puntos Cuartos 3
+	   if ($scope.rondas["Cuartos3"].Signo != 'N'){			   
+			if ($scope.rondas["Cuartos3"].Casa == JugadoresRondas[key].Cuartos3.Casa && $scope.rondas["Cuartos3"].Fuera == JugadoresRondas[key].Cuartos3.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Cuartos3"].Signo == JugadoresRondas[key].Cuartos3.Signo){
+			  if($scope.rondas["Cuartos3"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Cuartos3"].Signo == $scope.rondas["Cuartos3"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Cuartos3"].Signo != $scope.rondas["Cuartos3"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
+	   }
+	   
+	   //Puntos Cuartos 4
+	   if ($scope.rondas["Cuartos4"].Signo != 'N'){			   
+			if ($scope.rondas["Cuartos4"].Casa == JugadoresRondas[key].Cuartos4.Casa && $scope.rondas["Cuartos4"].Fuera == JugadoresRondas[key].Cuartos4.Fuera){
+			   Puntos = Puntos + 10;
+		   }
+		   if ($scope.rondas["Cuartos4"].Signo == JugadoresRondas[key].Cuartos4.Signo){
+			  if($scope.rondas["Cuartos4"].Signo == 'X'){ 
+				Puntos = Puntos + 8;
+			   }
+			   if($scope.rondas["Cuartos4"].Signo == $scope.rondas["Cuartos4"].Favorito){ 
+				Puntos = Puntos + 4;
+			   }
+			   if($scope.rondas["Cuartos4"].Signo != $scope.rondas["Cuartos4"].Favorito){ 
+				Puntos = Puntos + 6;
+			   }
+		   }
+	   }
 	   JugadoresRondas[key].Puntos = Puntos;
 	   
 	   

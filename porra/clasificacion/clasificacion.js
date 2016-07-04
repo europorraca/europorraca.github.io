@@ -58,7 +58,7 @@ $routeProvider.when('/clasificacion', {
 				   }
 				   if (response.fixtures[$scope.Partido1].status == 'TIMED'){
 						var date = new Date(response.fixtures[$scope.Partido1].date);						
-					   $scope.Tiempo = date.getHours() +'h' ;					   
+					   $scope.Tiempo = "Miercoles a las " + date.getHours() +'h' ;					   
 				   }
 				   $scope.EquipoCasa = response.fixtures[$scope.Partido1].homeTeamName
 				   $scope.EquipoFuera = response.fixtures[$scope.Partido1].awayTeamName
@@ -84,7 +84,7 @@ $routeProvider.when('/clasificacion', {
 				   if (response.fixtures[$scope.Partido2].status == 'TIMED'){
 					   
 	                   var date = new Date(response.fixtures[$scope.Partido2].date);						
-					   $scope.Tiempo2 = date.getHours() +'h' ;					   					   
+					   $scope.Tiempo2 = "Jueves a las " + date.getHours() +'h' ;					   					   
 				   }
 				   $scope.EquipoCasa1 = response.fixtures[$scope.Partido2].homeTeamName
 				   $scope.EquipoFuera1 = response.fixtures[$scope.Partido2].awayTeamName
@@ -110,7 +110,7 @@ $routeProvider.when('/clasificacion', {
 				   if (response.fixtures[$scope.Partido3].status == 'TIMED'){
 					   
                        var date = new Date(response.fixtures[$scope.Partido3].date);						
-					   $scope.Tiempo3 = date.getHours() +'h' ;					   
+					   $scope.Tiempo3 = "Sabado a las " + date.getHours() +'h' ;					   
 				   }
 				   $scope.EquipoCasa2 = response.fixtures[$scope.Partido3].homeTeamName
 				   $scope.EquipoFuera2 = response.fixtures[$scope.Partido3].awayTeamName
@@ -135,7 +135,7 @@ $routeProvider.when('/clasificacion', {
 				   }
 				   if (response.fixtures[$scope.Partido4].status == 'TIMED'){
 						var date = new Date(response.fixtures[$scope.Partido4].date);						
-					   $scope.Tiempo4 = date.getHours() +'h' ;					   
+					   $scope.Tiempo4 = "Domingo a las " + date.getHours() +'h' ;					   
 				   }
 				   $scope.EquipoCasa3 = response.fixtures[$scope.Partido4].homeTeamName
 				   $scope.EquipoFuera3 = response.fixtures[$scope.Partido4].awayTeamName
@@ -161,7 +161,7 @@ $routeProvider.when('/clasificacion', {
 				   }
 				   if (response.fixtures[$scope.Partido5].status == 'TIMED'){
 						var date = new Date(response.fixtures[$scope.Partido5].date);						
-					   $scope.Tiempo5 = date.getHours() +'h' ;					   
+					   $scope.Tiempo5 = "Domingo a las " + date.getHours() +'h' ;					   
 				   }
 				   $scope.EquipoCasa4 = response.fixtures[$scope.Partido5].homeTeamName;
 				   $scope.EquipoFuera4 = response.fixtures[$scope.Partido5].awayTeamName;
