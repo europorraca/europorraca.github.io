@@ -88,6 +88,8 @@ $routeProvider.when('/usuario', {
 	   $scope.Cuartos2 = {Fuera : null,  Casa: null  };
 	   $scope.Cuartos3 = {Fuera : null,  Casa: null  };
 	   $scope.Cuartos4 = {Fuera : null,  Casa: null  };
+	   $scope.Semis1 = {Fuera : null,  Casa: null  };
+	   $scope.Semis2 = {Fuera : null,  Casa: null  };
    
 	
      firebase.database().ref('Rondas/Jugadores/' +  user).once('value').then(function(snapshot) {
@@ -126,12 +128,48 @@ $routeProvider.when('/usuario', {
 	   $scope.Cuartos3.Fuera = rondas.Cuartos3.Fuera;
 	  $scope.Cuartos3.Casa = rondas.Cuartos3.Casa;
 	  
-	   $scope.Cuartos4.Fuera = rondas.Cuartos4.Fuera;
+	  $scope.Cuartos4.Fuera = rondas.Cuartos4.Fuera;
 	  $scope.Cuartos4.Casa = rondas.Cuartos4.Casa;
+	  
+	  $scope.Semis1.Fuera = rondas.Semis1.Fuera;
+	  $scope.Semis1.Casa = rondas.Semis1.Casa;
+	  
+	  $scope.Semis2.Fuera = rondas.Semis2.Fuera;
+	  $scope.Semis2.Casa = rondas.Semis2.Casa;
+	  
       $scope.$apply(); 
 	 
    });
    $scope.Guardar = function(event) {
+	   //semis 1
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis1').update({Casa : $scope.Semis1.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis1').update({Fuera : $scope.Semis1.Fuera});
+		if ($scope.Semis1.Fuera > $scope.Semis1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis1').update({Signo : 2});
+		}
+		if ($scope.Semis1.Fuera < $scope.Semis1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis1').update({Signo : 1});
+		}
+		if ($scope.Semis1.Fuera == $scope.Semis1.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis1').update({Signo : 'X'});
+		}
+		
+		//semis 2
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis2').update({Casa : $scope.Semis2.Casa});
+		firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis2').update({Fuera : $scope.Semis2.Fuera});
+		if ($scope.Semis2.Fuera > $scope.Semis2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis2').update({Signo : 2});
+		}
+		if ($scope.Semis2.Fuera < $scope.Semis2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis2').update({Signo : 1});
+		}
+		if ($scope.Semis2.Fuera == $scope.Semis2.Casa){
+			firebase.database().ref('Rondas/Jugadores/' +  user + '/Semis2').update({Signo : 'X'});
+		}
+		
+		
+   }
+   $scope.GuardarCuartos = function(event) {
 	   //Cuartos 1
 		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Casa : $scope.Cuartos1.Casa});
 		firebase.database().ref('Rondas/Jugadores/' +  user + '/Cuartos1').update({Fuera : $scope.Cuartos1.Fuera});
